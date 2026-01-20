@@ -1,0 +1,46 @@
+body {
+  background: radial-gradient(circle at top, #141414, #000);
+  color: #fff;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  background: #0d0d0d;
+  padding: 32px;
+  border-radius: 14px;
+  width: 360px;
+  box-shadow: 0 0 60px rgba(0,0,0,.8);
+}
+
+h1 {
+  margin-bottom: 4px;
+}
+
+select, input, button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: #6f5cff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .85;
+}
+
+#msg {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+}
