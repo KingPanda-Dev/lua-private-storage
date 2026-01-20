@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lua Secure Storage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="box">
+    <h1>🔐 Lua Secure Storage</h1>
+    <p>Private file access</p>
+
+    <select id="file">
+      <option value="eco.lua">eco.lua</option>
+      <option value="farm.lua">farm.lua</option>
+      <option value="admin.lua">admin.lua</option>
+    </select>
+
+    <input id="code" placeholder="Enter file code">
+    <button onclick="download()">Download</button>
+
+    <span id="msg"></span>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
