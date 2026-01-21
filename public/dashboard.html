@@ -1,1 +1,11 @@
+<h2>Dashboard</h2>
+<button onclick="gen()">Generate Code</button>
+<pre id="out"></pre>
 
+<script>
+async function gen() {
+  const r = await fetch("/api/generate-code")
+  const j = await r.json()
+  out.textContent = `CODE: ${j.code}\nEXPIRE: ${new Date(j.expire)}`
+}
+</script>
