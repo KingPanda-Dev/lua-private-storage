@@ -1,11 +1,35 @@
-<h2>Dashboard</h2>
-<button onclick="gen()">Generate Code</button>
-<pre id="out"></pre>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KingPanda Dashboard</title>
+  <link rel="stylesheet" href="/public/css/theme.css">
+</head>
+<body>
+<div class="app">
 
-<script>
-async function gen() {
-  const r = await fetch("/api/generate-code")
-  const j = await r.json()
-  out.textContent = `CODE: ${j.code}\nEXPIRE: ${new Date(j.expire)}`
-}
-</script>
+  <aside class="sidebar">
+    <div class="logo">🐼 KingPanda</div>
+    <div class="nav">
+      <button class="active" onclick="show('growpai')">GrowPai</button>
+      <button onclick="show('growlauncher')">GrowLauncher</button>
+      <button id="ownerBtn" style="display:none" onclick="show('owner')">Code Generator</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <h2 id="title">GrowPai Lua</h2>
+      <div class="user">
+        <img id="avatar">
+        <span id="username"></span>
+      </div>
+    </div>
+
+    <div id="content" class="grid"></div>
+  </main>
+
+</div>
+
+<script src="/public/js/dashboard.js"></script>
+</body>
+</html>
