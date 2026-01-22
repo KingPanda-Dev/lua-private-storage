@@ -7,6 +7,7 @@
 
     { "src": "^/$", "dest": "/index.html" },
     { "src": "^/dashboard$", "dest": "/dashboard.html" },
+    { "src": "^/no-access$", "dest": "/no-access.html" },
     { "src": "^/404$", "dest": "/404.html" },
 
     { "src": ".*\\.html$", "dest": "/404.html" },
