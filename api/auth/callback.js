@@ -33,6 +33,6 @@ export default async function handler(req, res) {
     return res.end()
   }
 
-  res.writeHead(302, { Location: "/public/dashboard.html" })
+  res.writeHead(302, { Location: "/dashboard" })
   res.end()
 }
