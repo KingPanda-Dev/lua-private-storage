@@ -1,33 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>KingPanda Dashboard</title>
   <link rel="stylesheet" href="/css/theme.css">
 </head>
 <body>
+
 <div class="app">
 
-  <aside class="sidebar">
-    <div class="logo">🐼 KingPanda</div>
+  <aside class="card sidebar">
+    <div class="side-title">
+      <div class="dot"></div>
+      <div>
+        <div style="font-weight:900;">KingPanda Dashboard</div>
+        <div class="small">Private Lua Storage</div>
+      </div>
+    </div>
+
     <div class="nav">
-      <button class="active" onclick="show('growpai')">GrowPai</button>
-      <button onclick="show('growlauncher')">GrowLauncher</button>
-      <button id="ownerBtn" style="display:none" onclick="show('owner')">Code Generator</button>
+      <button class="active" data-section="growpai" onclick="show('growpai')">📦 GrowPai</button>
+      <button data-section="growlauncher" onclick="show('growlauncher')">🚀 GrowLauncher</button>
+      <button id="ownerBtn" data-section="owner" style="display:none" onclick="show('owner')">👑 Code Generator</button>
+      <button class="danger" onclick="logout()">⛔ Logout</button>
+    </div>
+
+    <div class="hr"></div>
+    <div class="small">
+      Tip: jangan share code ke orang lain.
     </div>
   </aside>
 
   <main class="main">
     <div class="header">
-      <h2 id="title">GrowPai Lua</h2>
+      <div>
+        <h2 id="title" style="margin:0;">Loading...</h2>
+        <div class="small">Select category to download scripts</div>
+      </div>
+
       <div class="user">
-        <img id="avatar">
-        <span id="username"></span>
+        <img id="avatar" src="">
+        <span id="username">...</span>
       </div>
     </div>
 
     <div id="content" class="grid"></div>
   </main>
 
+</div>
+
+<!-- Custom Modal -->
+<div class="modal" id="codeModal" onclick="if(event.target.id==='codeModal') closeCodeModal()">
+  <div class="card modal-card">
+    <div class="modal-head">
+      <div class="modal-title">Enter Download Code</div>
+      <button class="btn" onclick="closeCodeModal()">✖</button>
+    </div>
+
+    <input id="codeInput" class="input" placeholder="ex: A7K2Q" maxlength="32" />
+
+    <div class="row" style="justify-content:flex-end;">
+      <button class="btn" onclick="closeCodeModal()">Cancel</button>
+      <button class="btn primary" onclick="confirmDownload()">Download</button>
+    </div>
+
+    <div class="small" style="margin-top:10px;">
+      Code will expire automatically.
+    </div>
+  </div>
 </div>
 
 <script src="/js/dashboard.js"></script>
