@@ -6,10 +6,10 @@ export const DISCORD = {
 
 export const PERMISSION = {
   OWNERS: [
-    "ISI_DISCORD_ID_KAMU"
+    "675212142701576234"
   ],
   ALLOWED_USERS: [
-    "ISI_DISCORD_ID_KAMU"
+    "675212142701576234"
   ]
 }
 
@@ -25,10 +25,10 @@ export const SCRIPT_CATEGORIES = {
 }
 
 export const GITHUB = {
-  OWNER: "USERNAME_GITHUB",
-  REPO: "lua-private-storage",
+  OWNER: "KingPanda-Dev",
+  REPO: "secret-script",
   BRANCH: "main",
   TOKEN: process.env.GH_TOKEN
 }
 
-export const WEBHOOK_URL = ""
+export const WEBHOOK_URL = "https://discord.com/api/webhooks/1329658461910204457/MH5vyt1KeG3EoTamuBhOmWWp0OdxfrFGTCCguyopoz2HTur20nqwl4a3ksiw7oEr_JaS"
