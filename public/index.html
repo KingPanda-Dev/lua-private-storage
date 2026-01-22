@@ -1,3 +1,432 @@
-<script>
-location.href="/public/loading.html"
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KingPanda Lua Storage</title>
+
+  <style>
+    :root{
+      --bg:#0f141a;
+      --panel:rgba(22,27,34,.72);
+      --panel2:rgba(18,22,28,.85);
+      --stroke:rgba(59,130,246,.25);
+      --blue:#3b82f6;
+      --blue2:#2563eb;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --shadow: 0 20px 70px rgba(0,0,0,.65);
+    }
+    *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Arial}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(59,130,246,.22), transparent 55%),
+        radial-gradient(700px 500px at 80% 30%, rgba(37,99,235,.16), transparent 60%),
+        radial-gradient(800px 600px at 50% 120%, rgba(59,130,246,.10), transparent 60%),
+        linear-gradient(180deg, #0b1016, var(--bg));
+      overflow:hidden;
+    }
+
+    /* floating decor */
+    .orb{
+      position:absolute;
+      width:420px;height:420px;
+      border-radius:50%;
+      filter: blur(30px);
+      opacity:.35;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.9), transparent 60%);
+      animation: float 6s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .orb.o1{left:-120px;top:-120px}
+    .orb.o2{right:-160px;top:120px;opacity:.25;animation-duration:7.5s}
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(18px)}
+    }
+
+    /* app container */
+    .wrap{
+      position:relative;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    /* glass card */
+    .card{
+      width:min(980px, 100%);
+      border-radius:22px;
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 22px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      width:42px;height:42px;border-radius:14px;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,1), rgba(37,99,235,.7));
+      box-shadow: 0 0 0 1px rgba(59,130,246,.35), 0 18px 50px rgba(59,130,246,.18);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;
+    }
+    .brand h1{
+      margin:0;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .brand p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .pill{
+      font-size:12px;
+      color:rgba(255,255,255,.85);
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(59,130,246,.12);
+      border:1px solid rgba(59,130,246,.25);
+    }
+
+    .content{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      padding:22px;
+    }
+
+    .hero{
+      border-radius:18px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,.06);
+      background: rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(600px 240px at 20% 0%, rgba(59,130,246,.22), transparent 60%);
+      pointer-events:none;
+    }
+    .hero h2{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.1;
+    }
+    .hero p{
+      margin:0 0 18px;
+      color:var(--muted);
+      max-width:52ch;
+      font-size:14px;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    .feat{
+      padding:12px;
+      border-radius:14px;
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      transition:.25s;
+    }
+    .feat:hover{
+      transform: translateY(-3px);
+      border-color: rgba(59,130,246,.25);
+      box-shadow: 0 0 0 1px rgba(59,130,246,.15);
+    }
+    .feat b{display:block;font-size:12px;margin-bottom:4px}
+    .feat span{font-size:12px;color:var(--muted)}
+
+    .panel{
+      border-radius:18px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.06);
+      background: rgba(0,0,0,.18);
+    }
+
+    .panel h3{
+      margin:0 0 8px;
+      font-size:14px;
+    }
+    .panel small{
+      color:var(--muted);
+      display:block;
+      margin-bottom:14px;
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      border-radius:14px;
+      padding:14px 16px;
+      cursor:pointer;
+      font-weight:700;
+      color:white;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow: 0 18px 55px rgba(59,130,246,.22);
+      transition:.25s;
+    }
+    .btn:hover{transform: translateY(-2px)}
+    .btn:active{transform: translateY(0px)}
+
+    .btn2{
+      width:100%;
+      border-radius:14px;
+      padding:12px 14px;
+      cursor:pointer;
+      font-weight:700;
+      color:rgba(255,255,255,.92);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      margin-top:10px;
+      transition:.25s;
+    }
+    .btn2:hover{
+      border-color: rgba(59,130,246,.25);
+      box-shadow: 0 0 0 1px rgba(59,130,246,.12);
+      transform: translateY(-2px);
+    }
+
+    .status{
+      margin-top:12px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+      white-space:pre-line;
+    }
+
+    /* loading screen overlay */
+    .loading{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(900px 600px at 30% 10%, rgba(59,130,246,.22), transparent 55%),
+        linear-gradient(180deg, #0b1016, #0f141a);
+      z-index:999;
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .loading.hide{
+      opacity:0;
+      transform: scale(1.02);
+      pointer-events:none;
+    }
+    .loadbox{
+      width:min(520px, 92%);
+      border-radius:22px;
+      padding:22px;
+      background: rgba(22,27,34,.75);
+      border:1px solid rgba(59,130,246,.25);
+      box-shadow: var(--shadow);
+      text-align:center;
+    }
+    .loadlogo{
+      width:72px;height:72px;
+      border-radius:22px;
+      margin:0 auto 14px;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,1), rgba(37,99,235,.7));
+      display:flex;align-items:center;justify-content:center;
+      font-size:26px;
+      font-weight:900;
+      box-shadow: 0 0 0 1px rgba(59,130,246,.35), 0 20px 60px rgba(59,130,246,.2);
+    }
+    .bar{
+      height:10px;
+      width:100%;
+      background: rgba(255,255,255,.06);
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.06);
+      margin-top:14px;
+    }
+    .bar > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(59,130,246,1), rgba(37,99,235,1));
+      border-radius:999px;
+      transition: width .25s ease;
+    }
+    .loadtxt{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:10px;
+    }
+
+    /* responsive */
+    @media (max-width: 900px){
+      .content{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+
+  <div class="wrap">
+    <div class="card">
+
+      <!-- LOADING OVERLAY -->
+      <div id="loading" class="loading">
+        <div class="loadbox">
+          <div class="loadlogo">🐼</div>
+          <h2 style="margin:0 0 6px;">KingPanda Storage</h2>
+          <div class="loadtxt" id="loadtxt">Initializing...</div>
+          <div class="bar"><div id="bar"></div></div>
+          <div class="loadtxt" style="margin-top:12px;">Secure Lua Dashboard</div>
+        </div>
+      </div>
+
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">KP</div>
+          <div>
+            <h1>KingPanda Lua Storage</h1>
+            <p>GrowPai • GrowLauncher • Private Access</p>
+          </div>
+        </div>
+        <div class="pill" id="pill">Checking session...</div>
+      </div>
+
+      <div class="content">
+        <section class="hero">
+          <h2>Private Lua Vault<br/>with Premium Dashboard</h2>
+          <p>
+            Access is protected by Discord login and permissions.
+            Downloads are logged. Codes can be generated by owner only.
+          </p>
+
+          <div class="features">
+            <div class="feat"><b>🔐 Discord Auth</b><span>Secure identity</span></div>
+            <div class="feat"><b>🧾 Download Logs</b><span>Discord webhook</span></div>
+            <div class="feat"><b>⚡ Fast</b><span>GitHub raw fetch</span></div>
+          </div>
+        </section>
+
+        <aside class="panel">
+          <h3>Access Panel</h3>
+          <small id="sub">Loading session status...</small>
+
+          <button class="btn" id="mainBtn" disabled>Loading...</button>
+          <button class="btn2" id="secondaryBtn" style="display:none;">Logout</button>
+
+          <div class="status" id="status"></div>
+        </aside>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // ===== LOADING SEQUENCE =====
+    const loadingEl = document.getElementById("loading");
+    const barEl = document.getElementById("bar");
+    const loadtxt = document.getElementById("loadtxt");
+
+    const pill = document.getElementById("pill");
+    const sub = document.getElementById("sub");
+    const mainBtn = document.getElementById("mainBtn");
+    const secondaryBtn = document.getElementById("secondaryBtn");
+    const statusEl = document.getElementById("status");
+
+    function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+    async function runLoading(){
+      const steps = [
+        { p: 18, t: "Booting UI..." },
+        { p: 42, t: "Loading assets..." },
+        { p: 66, t: "Checking session..." },
+        { p: 90, t: "Preparing dashboard..." },
+        { p: 100, t: "Ready." }
+      ];
+      for (const s of steps){
+        barEl.style.width = s.p + "%";
+        loadtxt.textContent = s.t;
+        await sleep(260);
+      }
+      await sleep(220);
+      loadingEl.classList.add("hide");
+    }
+
+    // ===== SESSION CHECK =====
+    async function getMe(){
+      const r = await fetch("/api/auth/me");
+      if (!r.ok) return null;
+      return await r.json();
+    }
+
+    function setLoggedOutUI(){
+      pill.textContent = "Not logged in";
+      sub.textContent = "You need to login to access the dashboard.";
+      mainBtn.disabled = false;
+      mainBtn.textContent = "Login with Discord";
+      mainBtn.onclick = () => {
+        window.location.href = "/api/auth/login";
+      };
+      secondaryBtn.style.display = "none";
+      statusEl.textContent = "Tip: after login, you'll be redirected to dashboard automatically.";
+    }
+
+    function setLoggedInUI(user){
+      pill.textContent = "Session active";
+      sub.textContent = `Logged in as ${user.username}`;
+      mainBtn.disabled = false;
+      mainBtn.textContent = "Go to Dashboard";
+      mainBtn.onclick = () => {
+        window.location.href = "/dashboard.html";
+      };
+
+      secondaryBtn.style.display = "block";
+      secondaryBtn.textContent = "Logout";
+      secondaryBtn.onclick = async () => {
+        await fetch("/api/auth/logout", { method: "POST" }).catch(()=>{});
+        window.location.reload();
+      };
+
+      statusEl.textContent =
+        `Discord ID: ${user.id}\n` +
+        `Owner: ${user.isOwner ? "YES" : "NO"}\n` +
+        `Permission: ${user.allowed ? "ALLOWED" : "CHECK DASHBOARD"}`;
+    }
+
+    // ===== INIT =====
+    (async () => {
+      await runLoading();
+
+      const me = await getMe();
+      if (!me) return setLoggedOutUI();
+      setLoggedInUI(me);
+    })();
+  </script>
+</body>
+</html>
