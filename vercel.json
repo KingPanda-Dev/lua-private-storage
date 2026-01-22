@@ -2,9 +2,15 @@
   "version": 2,
   "routes": [
     { "src": "^/api/(.*)$", "dest": "/api/$1" },
+
     { "handle": "filesystem" },
-    { "src": "^/$", "dest": "/public/index.html" },
-    { "src": "^/dashboard$", "dest": "/public/dashboard.html" },
-    { "src": ".*", "dest": "/public/404.html" }
+
+    { "src": "^/$", "dest": "/index.html" },
+    { "src": "^/dashboard$", "dest": "/dashboard.html" },
+    { "src": "^/404$", "dest": "/404.html" },
+
+    { "src": ".*\\.html$", "dest": "/404.html" },
+
+    { "src": ".*", "dest": "/404.html" }
   ]
 }
