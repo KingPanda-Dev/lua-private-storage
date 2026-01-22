@@ -2,75 +2,75 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KingPanda Dashboard</title>
   <link rel="stylesheet" href="/css/theme.css">
 </head>
 <body>
+  <div class="bg">
+    <div class="app">
 
-<div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar glass">
+        <div class="sideTitle">
+          <div class="dot"></div>
+          <div>
+            <div style="font-weight:900; font-size:16px;">KingPanda Dashboard</div>
+            <div class="muted">Private Lua Storage</div>
+          </div>
+        </div>
 
-  <aside class="card sidebar">
-    <div class="side-title">
-      <div class="dot"></div>
-      <div>
-        <div style="font-weight:900;">KingPanda Dashboard</div>
-        <div class="small">Private Lua Storage</div>
-      </div>
-    </div>
+        <button class="navBtn active" onclick="showCategory('growpai')">📦 GrowPai</button>
+        <button class="navBtn" onclick="showCategory('growlauncher')">🚀 GrowLauncher</button>
+        <button class="navBtn" id="ownerBtn" style="display:none" onclick="showCategory('owner')">👑 Code Generator</button>
 
-    <div class="nav">
-      <button class="active" data-section="growpai" onclick="show('growpai')">📦 GrowPai</button>
-      <button data-section="growlauncher" onclick="show('growlauncher')">🚀 GrowLauncher</button>
-      <button id="ownerBtn" data-section="owner" style="display:none" onclick="show('owner')">👑 Code Generator</button>
-      <button class="danger" onclick="logout()">⛔ Logout</button>
-    </div>
+        <div class="sidebarFooter">
+          <div class="muted" style="margin-bottom:10px;">
+            Tip: jangan share code ke orang lain.
+          </div>
 
-    <div class="hr"></div>
-    <div class="small">
-      Tip: jangan share code ke orang lain.
-    </div>
-  </aside>
+          <!-- User info + logout button (as you asked) -->
+          <div class="row" style="gap:12px;">
+            <img id="sideAvatar" class="avatarImg" />
+            <div style="flex:1; min-width:0;">
+              <div id="sideName" style="font-weight:800; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></div>
+              <div class="muted" id="sideId" style="font-size:11px;"></div>
+              <button class="btn danger" style="margin-top:10px; padding:10px 12px;" onclick="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </aside>
 
-  <main class="main">
-    <div class="header">
-      <div>
-        <h2 id="title" style="margin:0;">Loading...</h2>
-        <div class="small">Select category to download scripts</div>
-      </div>
+      <!-- Content -->
+      <main class="content">
+        <div class="topbar glass">
+          <div class="pageTitle">
+            <h2 id="title">GrowPai Scripts</h2>
+            <span id="subtitle">Select script to download</span>
+          </div>
 
-      <div class="user">
-        <img id="avatar" src="">
-        <span id="username">...</span>
-      </div>
-    </div>
+          <!-- Avatar only on mobile, dropdown logout -->
+          <div class="userMenu">
+            <div class="avatarBtn" onclick="toggleDropdown()">
+              <img id="avatar" class="avatarImg" />
+              <div class="userText">
+                <strong id="username">Loading...</strong>
+                <small id="userid">...</small>
+              </div>
+            </div>
 
-    <div id="content" class="grid"></div>
-  </main>
+            <div id="dropdown" class="dropdown glass">
+              <button class="btn danger" onclick="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
 
-</div>
+        <div id="content" class="grid"></div>
+      </main>
 
-<!-- Custom Modal -->
-<div class="modal" id="codeModal" onclick="if(event.target.id==='codeModal') closeCodeModal()">
-  <div class="card modal-card">
-    <div class="modal-head">
-      <div class="modal-title">Enter Download Code</div>
-      <button class="btn" onclick="closeCodeModal()">✖</button>
-    </div>
-
-    <input id="codeInput" class="input" placeholder="ex: A7K2Q" maxlength="32" />
-
-    <div class="row" style="justify-content:flex-end;">
-      <button class="btn" onclick="closeCodeModal()">Cancel</button>
-      <button class="btn primary" onclick="confirmDownload()">Download</button>
-    </div>
-
-    <div class="small" style="margin-top:10px;">
-      Code will expire automatically.
     </div>
   </div>
-</div>
 
-<script src="/js/dashboard.js"></script>
+  <script src="/js/dashboard.js"></script>
 </body>
 </html>
