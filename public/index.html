@@ -338,7 +338,7 @@
           <small id="sub">Loading session status...</small>
 
           <button class="btn" id="mainBtn" disabled>Loading...</button>
-          <button class="btn2" id="secondaryBtn" style="display:none;">Logout</button>
+          <button class="btn2" id="secondaryBtn" style="display:none;" onclick="logout()">Logout</button>
 
           <div class="status" id="status"></div>
         </aside>
@@ -384,7 +384,12 @@
       if (!r.ok) return null;
       return await r.json();
     }
-
+    
+    async function logout() {
+      await fetch("/api/auth/logout")
+      location.href = "/"
+    }
+    
     function setLoggedOutUI(){
       pill.textContent = "Not logged in";
       sub.textContent = "You need to login to access the dashboard.";
