@@ -1,5 +1,51 @@
-<h1>❌ Access Denied</h1>
-<p>
-Sorry you don't have permission to Access This page!<br>
-You need to ask <b>KingPanda#6669</b> for the Access!
-</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>No Access</title>
+  <link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+  <div class="bg-wrap">
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">🔒</div>
+          <div>
+            <div class="name">Access Restricted</div>
+            <div class="tag">KingPanda Private Storage</div>
+          </div>
+        </div>
+        <span class="badge">NO PERMISSION</span>
+      </div>
+
+      <div class="card hero">
+        <h1>Sorry, you don’t have permission.</h1>
+        <p>
+          You need to ask <b>KingPanda#6669</b> for access.
+          This storage is private and protected.
+        </p>
+
+        <div class="hr"></div>
+
+        <div class="row">
+          <button class="btn primary" onclick="location.href='/'">Back to Home</button>
+          <button class="btn danger" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="small" style="margin-top:14px;">
+          If you believe this is a mistake, contact the owner with your Discord ID.
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+async function logout(){
+  await fetch("/api/auth/logout");
+  location.href="/";
+}
+</script>
+</body>
+</html>
