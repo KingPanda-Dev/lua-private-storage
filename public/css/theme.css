@@ -909,8 +909,17 @@ body {
   display: none;
 }
 
-/* Mobile */
+/* PC: hide hamburger */
+#sidebarToggle {
+  display: none;
+}
+  
+/* ===== Mobile ===== */
 @media (max-width: 900px) {
+  #sidebarToggle {
+    display: inline-flex;
+  }
+  
   .dashWrap {
     flex-direction: column;
     padding: 14px;
@@ -923,10 +932,7 @@ body {
     position: relative;
     top: 0;
   }
-}
-
-/* ===== Mobile ===== */
-@media (max-width: 900px) {
+  
   .app {
     flex-direction: row; /* PENTING: jangan column */
     padding: 0;
