@@ -927,29 +927,48 @@ body {
 
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
-  .container {
-    padding: 16px;
-  }
-
   .app {
-    flex-direction: column;
-    padding: 14px;
+    flex-direction: row; /* PENTING: jangan column */
+    padding: 0;
+    gap: 0;
   }
 
   .sidebar {
-    width: 100%;
-    min-width: unset;
-    height: auto;
-    position: relative;
+    position: fixed;
     top: 0;
+    left: 0;
+    height: 100vh;
+    width: 86%;
+    max-width: 320px;
+    min-width: unset;
+    z-index: 1000;
+    transform: translateX(-110%);
+    transition: transform 0.25s ease;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .sidebar.open {
+    transform: translateX(0%);
   }
 
-  .avatarBtn .userText {
-    display: none; /* HP: kanan atas cuma avatar biar clean */
+  .content {
+    width: 100%;
+    padding: 14px;
+  }
+
+  /* overlay */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    display: none;
+  }
+
+  .overlay.show {
+    display: block;
   }
   
   .sidebar.mobileHide {
