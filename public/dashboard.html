@@ -8,6 +8,10 @@
 </head>
 <body>
   <div class="bg">
+
+    <!-- overlay (mobile) -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
     <div class="app">
 
       <!-- SIDEBAR -->
@@ -19,9 +23,10 @@
             <div class="muted">Dashboard</div>
           </div>
 
-          <!-- tombol toggle cuma buat mobile -->
-          <button id="sidebarToggle" class="btn" style="padding:8px 10px; border-radius:12px; margin-left:auto;">
-            ☰
+          <!-- tombol close (mobile) -->
+          <button class="btn" style="padding:8px 10px; border-radius:12px; margin-left:auto;"
+            onclick="closeSidebar()">
+            ✕
           </button>
         </div>
 
@@ -72,11 +77,19 @@
 
       <!-- CONTENT -->
       <main class="content">
+
+        <!-- TOPBAR -->
         <div class="topbar glass">
           <div class="pageTitle">
             <h2 id="pageTitle">Introduction</h2>
             <span id="pageDesc">Welcome to KingPanda private storage dashboard.</span>
           </div>
+
+          <!-- hamburger hanya mobile -->
+          <button id="sidebarToggle" class="btn" style="padding:10px 12px; border-radius:14px;"
+            onclick="openSidebar()">
+            ☰
+          </button>
         </div>
 
         <div class="grid" id="pageContent">
@@ -90,6 +103,7 @@
             <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
           </div>
         </div>
+
       </main>
 
     </div>
