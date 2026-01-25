@@ -29,11 +29,24 @@
     </div>
   </div>
 
-<script>
-async function logout() {
-  await fetch("/api/auth/logout")
-  location.href = "/"
-}
-</script>
+  <script>
+    async function logout() {
+      await fetch("/api/auth/logout")
+      location.href = "/"
+    }
+    
+    async function init() {
+      // ⚠️ Wajib login dulu, kalau belum login => 404
+      const r = await fetch("/api/auth/me")
+      const me = await r.json().catch(() => ({}))
+    
+      if (!me || me.error || !me.id) {
+        location.href = "/404"
+        return
+      }
+    }
+    
+    init()
+  </script>
 </body>
 </html>
