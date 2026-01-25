@@ -8,64 +8,101 @@
 </head>
 <body>
   <div class="bg">
-    <div class="app">
+    <div class="dashWrap">
 
       <!-- Sidebar -->
-      <aside class="sidebar glass">
-        <div class="sideTitle">
-          <div class="dot"></div>
-          <div>
-            <div style="font-weight:900; font-size:16px;">KingPanda Dashboard</div>
-            <div class="muted">Private Lua Storage</div>
-          </div>
-        </div>
-
-        <button class="navBtn active" onclick="showCategory('growpai')">📦 GrowPai</button>
-        <button class="navBtn" onclick="showCategory('growlauncher')">🚀 GrowLauncher</button>
-        <button class="navBtn" id="ownerBtn" style="display:none" onclick="showCategory('owner')">👑 Code Generator</button>
-
-        <div class="sidebarFooter">
-          <div class="muted" style="margin-bottom:10px;">
-            Tip: jangan share code ke orang lain.
-          </div>
-
-          <!-- User info + logout button (as you asked) -->
-          <div class="row" style="gap:12px;">
-            <img id="sideAvatar" class="avatarImg" />
-            <div style="flex:1; min-width:0;">
-              <div id="sideName" style="font-weight:800; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></div>
-              <div class="muted" id="sideId" style="font-size:11px;"></div>
-              <button class="btn danger" style="margin-top:10px; padding:10px 12px;" onclick="logout()">Logout</button>
+      <aside id="sidebar" class="dashSidebar glass">
+        <div class="sideHeader">
+          <div class="brandMini">
+            <div class="dot"></div>
+            <div>
+              <div class="sideTitleText">KingPanda</div>
+              <div class="muted">Dashboard</div>
             </div>
           </div>
+
+          <button class="iconBtn" onclick="toggleSidebar()" title="Toggle Sidebar">
+            ☰
+          </button>
         </div>
+
+        <!-- Avatar + Name -->
+        <div class="sideUser">
+          <img id="sideAvatar" class="avatarImg" />
+          <div class="sideUserText">
+            <div id="sideName" class="sideName">Loading...</div>
+            <div id="sideId" class="muted">...</div>
+          </div>
+        </div>
+
+        <!-- Home + Logout -->
+        <div class="sideActions">
+          <button class="btn" onclick="location.href='/'">Home</button>
+          <button class="btn danger" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Introduction -->
+        <button class="sideLink active" onclick="showPage('intro')">📘 Introduction</button>
+
+        <div class="divider"></div>
+
+        <!-- Categories -->
+        <div class="sideSectionTitle muted">CATEGORIES</div>
+
+        <!-- GrowPai Dropdown -->
+        <div class="dropdownBlock">
+          <button class="dropBtn" onclick="toggleDrop('growpaiDrop')">
+            📦 GrowPai
+            <span class="chev" id="growpaiChev">▾</span>
+          </button>
+
+          <div class="dropList" id="growpaiDrop">
+            <button class="childBtn" onclick="showPage('growpai_file1')">• GrowPai Main</button>
+            <button class="childBtn" onclick="showPage('growpai_file2')">• GrowPai Extra</button>
+          </div>
+        </div>
+
+        <!-- GrowLauncher Dropdown -->
+        <div class="dropdownBlock">
+          <button class="dropBtn" onclick="toggleDrop('growlauncherDrop')">
+            🚀 GrowLauncher
+            <span class="chev" id="growlauncherChev">▾</span>
+          </button>
+
+          <div class="dropList" id="growlauncherDrop">
+            <button class="childBtn" onclick="showPage('growlauncher_file1')">• GrowLauncher Main</button>
+          </div>
+        </div>
+
       </aside>
 
-      <!-- Content -->
-      <main class="content">
-        <div class="topbar glass">
-          <div class="pageTitle">
-            <h2 id="title">GrowPai Scripts</h2>
-            <span id="subtitle">Select script to download</span>
-          </div>
-
-          <!-- Avatar only on mobile, dropdown logout -->
-          <div class="userMenu">
-            <div class="avatarBtn" onclick="toggleDropdown()">
-              <img id="avatar" class="avatarImg" />
-              <div class="userText">
-                <strong id="username">Loading...</strong>
-                <small id="userid">...</small>
-              </div>
-            </div>
-
-            <div id="dropdown" class="dropdown glass">
-              <button class="btn danger" onclick="logout()">Logout</button>
-            </div>
+      <!-- Main -->
+      <main class="dashMain">
+        <div class="dashTop glass">
+          <div class="topTitle">
+            <div id="pageTitle" class="topH">Introduction</div>
+            <div id="pageDesc" class="muted">Welcome to KingPanda private storage dashboard.</div>
           </div>
         </div>
 
-        <div id="content" class="grid"></div>
+        <div class="dashContent" id="pageContent">
+          <!-- Intro Content -->
+          <div class="glass card">
+            <h3 style="margin:0 0 6px 0;">👋 Welcome</h3>
+            <p class="muted" style="margin:0;">
+              This dashboard is private. Access is limited and downloads are protected.
+            </p>
+          </div>
+
+          <div class="glass card">
+            <h3 style="margin:0 0 6px 0;">🔐 Rules</h3>
+            <p class="muted" style="margin:0;">
+              Do not share codes. Do not reupload scripts. Your activity can be logged.
+            </p>
+          </div>
+        </div>
       </main>
 
     </div>
