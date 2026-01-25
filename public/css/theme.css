@@ -156,6 +156,7 @@ body {
   position: sticky;
   top: 18px;
   padding: 16px;
+  border-right: 1px solid rgba(255,255,255,0.08);
 }
 
 .sideTitle {
@@ -677,6 +678,24 @@ body {
 }
 
 /* ===== Dashboard New Layout ===== */
+.dropWrap {
+  display: none;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.dropWrap.show {
+  display: block;
+}
+
+.navBtn.child {
+  margin-bottom: 8px;
+  font-weight: 650;
+  font-size: 13px;
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+}
+  
 .dashWrap {
   display: flex;
   gap: 16px;
