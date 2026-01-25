@@ -13,5 +13,15 @@
     { "src": ".*\\.html$", "dest": "/404.html" },
 
     { "src": ".*", "dest": "/404.html" }
+  ],
+  "rewrites": [
+    { "source": "/js/(.*)", "destination": "/js/$1" },
+    { "source": "/css/(.*)", "destination": "/css/$1" },
+
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/no-access", "destination": "/no-access.html" },
+    { "source": "/404", "destination": "/404.html" },
+
+    { "source": "/", "destination": "/index.html" }
   ]
 }
