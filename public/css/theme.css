@@ -951,4 +951,8 @@ body {
   .avatarBtn .userText {
     display: none; /* HP: kanan atas cuma avatar biar clean */
   }
+  
+  .sidebar.mobileHide {
+    display: none;
+  }
 }
