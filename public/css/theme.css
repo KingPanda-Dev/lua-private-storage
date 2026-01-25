@@ -38,14 +38,14 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
-}
-
-/* ===== Card / Glass ===== */
-.glass {
   position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
+}
+
+/* ===== Card / Glass ===== */
+.glass {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(59,130,246,0.18);
   border-radius: 18px;
