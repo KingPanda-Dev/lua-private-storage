@@ -1,11 +1,14 @@
-// ====== CONFIG ======
-const OWNER_IDS = [
-  process.env.OWNER_DISCORD_IDS
-]
+// ====== CONFIG (LOAD FROM API) ======
+let OWNER_IDS = []
+let ALLOWED_IDS = []
 
-const ALLOWED_IDS = [
-  process.env.ALLOWED_DISCORD_IDS
-]
+async function loadConfig() {
+  const r = await fetch("/api/config")
+  const cfg = await r.json()
+
+  OWNER_IDS = cfg.owners || []
+  ALLOWED_IDS = cfg.allowed || []
+}
 
 function isAllowed(id) {
   return OWNER_IDS.includes(id) || ALLOWED_IDS.includes(id)
