@@ -7,29 +7,47 @@ const ALLOWED_IDS = [
   process.env.ALLOWED_DISCORD_IDS
 ]
 
-async function getMe() {
-  const r = await fetch("/api/auth/me")
-  return await r.json().catch(() => ({}))
-}
-
 function isAllowed(id) {
-  return ALLOWED_IDS.includes(id) || OWNER_IDS.includes(id)
+  return OWNER_IDS.includes(id) || ALLOWED_IDS.includes(id)
 }
 
-/* ===== DROPDOWN ===== */
+/* ===== Sidebar control ===== */
+window.openSidebar = function () {
+  const sidebar = document.getElementById("sidebar")
+  const overlay = document.getElementById("overlay")
+  if (!sidebar || !overlay) return
+
+  sidebar.classList.add("open")
+  overlay.classList.add("show")
+}
+
+window.closeSidebar = function () {
+  const sidebar = document.getElementById("sidebar")
+  const overlay = document.getElementById("overlay")
+  if (!sidebar || !overlay) return
+
+  sidebar.classList.remove("open")
+  overlay.classList.remove("show")
+}
+
+/* ===== Dropdown ===== */
 window.toggleDrop = function (id) {
   const el = document.getElementById(id)
   if (!el) return
   el.classList.toggle("show")
 }
 
-/* ===== PAGES ===== */
+/* ===== Pages ===== */
 window.showPage = function (page) {
   const title = document.getElementById("pageTitle")
   const desc = document.getElementById("pageDesc")
   const content = document.getElementById("pageContent")
 
-  // active intro button
+  // auto close sidebar on mobile after click
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    closeSidebar()
+  }
+
   document.getElementById("btnIntro").classList.remove("active")
 
   if (page === "intro") {
@@ -60,41 +78,21 @@ window.showPage = function (page) {
   `
 }
 
-/* ===== LOGOUT ===== */
+/* ===== Logout ===== */
 window.logout = async function () {
-  await fetch("/api/auth/logout")
+  try {
+    // pastiin endpoint ini ada: /api/auth/logout.js
+    await fetch("/api/auth/logout", { method: "GET" })
+  } catch (e) {}
   location.href = "/"
 }
 
-/* ===== MOBILE SIDEBAR TOGGLE ===== */
-function setupSidebarToggle() {
-  const sidebar = document.getElementById("sidebar")
-  const btn = document.getElementById("sidebarToggle")
-
-  const isMobile = () => window.matchMedia("(max-width: 900px)").matches
-
-  function applyMode() {
-    // PC: sidebar always open + hide toggle button
-    if (!isMobile()) {
-      sidebar.classList.remove("mobileHide")
-      btn.style.display = "none"
-    } else {
-      // Mobile: default hidden, tombol muncul
-      btn.style.display = "inline-flex"
-      sidebar.classList.add("mobileHide")
-    }
-  }
-
-  btn.addEventListener("click", () => {
-    if (!isMobile()) return
-    sidebar.classList.toggle("mobileHide")
-  })
-
-  window.addEventListener("resize", applyMode)
-  applyMode()
+/* ===== Auth check ===== */
+async function getMe() {
+  const r = await fetch("/api/auth/me")
+  return await r.json().catch(() => ({}))
 }
 
-/* ===== INIT ===== */
 async function init() {
   const me = await getMe()
 
@@ -115,10 +113,9 @@ async function init() {
     : `https://cdn.discordapp.com/embed/avatars/0.png`
 
   document.getElementById("sideAvatar").src = avatarUrl
-  document.getElementById("sideName").innerText = me.username
+  document.getElementById("sideName").innerText = me.username || "User"
   document.getElementById("sideId").innerText = `ID: ${me.id}`
 
-  setupSidebarToggle()
   showPage("intro")
 }
 
