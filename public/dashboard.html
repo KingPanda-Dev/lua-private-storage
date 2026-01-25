@@ -8,99 +8,86 @@
 </head>
 <body>
   <div class="bg">
-    <div class="dashWrap">
+    <div class="app">
 
-      <!-- Sidebar -->
-      <aside id="sidebar" class="dashSidebar glass">
-        <div class="sideHeader">
-          <div class="brandMini">
-            <div class="dot"></div>
-            <div>
-              <div class="sideTitleText">KingPanda</div>
-              <div class="muted">Dashboard</div>
-            </div>
+      <!-- SIDEBAR -->
+      <aside id="sidebar" class="sidebar glass">
+        <div class="sideTitle">
+          <div class="dot"></div>
+          <div>
+            <div style="font-weight:900;">KingPanda</div>
+            <div class="muted">Dashboard</div>
           </div>
 
-          <button class="iconBtn" onclick="toggleSidebar()" title="Toggle Sidebar">
+          <!-- tombol toggle cuma buat mobile -->
+          <button id="sidebarToggle" class="btn" style="padding:8px 10px; border-radius:12px; margin-left:auto;">
             ☰
           </button>
         </div>
 
-        <!-- Avatar + Name -->
-        <div class="sideUser">
+        <!-- USER -->
+        <div style="display:flex; align-items:center; gap:10px; padding:12px; border-radius:16px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04);">
           <img id="sideAvatar" class="avatarImg" />
-          <div class="sideUserText">
-            <div id="sideName" class="sideName">Loading...</div>
+          <div style="min-width:0;">
+            <div id="sideName" style="font-weight:900; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              Loading...
+            </div>
             <div id="sideId" class="muted">...</div>
           </div>
         </div>
 
-        <!-- Home + Logout -->
-        <div class="sideActions">
+        <!-- HOME + LOGOUT -->
+        <div class="row" style="margin-top:12px;">
           <button class="btn" onclick="location.href='/'">Home</button>
           <button class="btn danger" onclick="logout()">Logout</button>
         </div>
 
-        <div class="divider"></div>
+        <div class="sidebarFooter">
+          <button class="navBtn active" id="btnIntro" onclick="showPage('intro')">📘 Introduction</button>
 
-        <!-- Introduction -->
-        <button class="sideLink active" onclick="showPage('intro')">📘 Introduction</button>
+          <div style="margin:12px 0; height:1px; background:rgba(255,255,255,0.08);"></div>
 
-        <div class="divider"></div>
+          <div class="muted" style="font-size:11px; letter-spacing:1px; margin-bottom:10px;">
+            CATEGORIES
+          </div>
 
-        <!-- Categories -->
-        <div class="sideSectionTitle muted">CATEGORIES</div>
-
-        <!-- GrowPai Dropdown -->
-        <div class="dropdownBlock">
-          <button class="dropBtn" onclick="toggleDrop('growpaiDrop')">
-            📦 GrowPai
-            <span class="chev" id="growpaiChev">▾</span>
+          <!-- GrowPai -->
+          <button class="navBtn" onclick="toggleDrop('dropGrowPai')">
+            📦 GrowPai <span style="float:right;">▾</span>
           </button>
+          <div id="dropGrowPai" class="dropWrap">
+            <button class="navBtn child" onclick="showPage('growpai_main')">• GrowPai Main</button>
+            <button class="navBtn child" onclick="showPage('growpai_extra')">• GrowPai Extra</button>
+          </div>
 
-          <div class="dropList" id="growpaiDrop">
-            <button class="childBtn" onclick="showPage('growpai_file1')">• GrowPai Main</button>
-            <button class="childBtn" onclick="showPage('growpai_file2')">• GrowPai Extra</button>
+          <!-- GrowLauncher -->
+          <button class="navBtn" onclick="toggleDrop('dropGrowLauncher')">
+            🚀 GrowLauncher <span style="float:right;">▾</span>
+          </button>
+          <div id="dropGrowLauncher" class="dropWrap">
+            <button class="navBtn child" onclick="showPage('growlauncher_main')">• GrowLauncher Main</button>
           </div>
         </div>
-
-        <!-- GrowLauncher Dropdown -->
-        <div class="dropdownBlock">
-          <button class="dropBtn" onclick="toggleDrop('growlauncherDrop')">
-            🚀 GrowLauncher
-            <span class="chev" id="growlauncherChev">▾</span>
-          </button>
-
-          <div class="dropList" id="growlauncherDrop">
-            <button class="childBtn" onclick="showPage('growlauncher_file1')">• GrowLauncher Main</button>
-          </div>
-        </div>
-
       </aside>
 
-      <!-- Main -->
-      <main class="dashMain">
-        <div class="dashTop glass">
-          <div class="topTitle">
-            <div id="pageTitle" class="topH">Introduction</div>
-            <div id="pageDesc" class="muted">Welcome to KingPanda private storage dashboard.</div>
+      <!-- CONTENT -->
+      <main class="content">
+        <div class="topbar glass">
+          <div class="pageTitle">
+            <h2 id="pageTitle">Introduction</h2>
+            <span id="pageDesc">Welcome to KingPanda private storage dashboard.</span>
           </div>
         </div>
 
-        <div class="dashContent" id="pageContent">
-          <!-- Intro Content -->
+        <div class="grid" id="pageContent">
           <div class="glass card">
-            <h3 style="margin:0 0 6px 0;">👋 Welcome</h3>
-            <p class="muted" style="margin:0;">
-              This dashboard is private. Access is limited and downloads are protected.
-            </p>
+            <h3>👋 Welcome</h3>
+            <p>This dashboard is private. Access is limited and downloads are protected.</p>
           </div>
 
           <div class="glass card">
-            <h3 style="margin:0 0 6px 0;">🔐 Rules</h3>
-            <p class="muted" style="margin:0;">
-              Do not share codes. Do not reupload scripts. Your activity can be logged.
-            </p>
+            <h3>🔐 Rules</h3>
+            <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
           </div>
         </div>
       </main>
