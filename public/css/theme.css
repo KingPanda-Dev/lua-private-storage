@@ -676,6 +676,236 @@ body {
   flex: 1;
 }
 
+/* ===== Dashboard New Layout ===== */
+.dashWrap {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  min-height: 100vh;
+}
+
+.dashSidebar {
+  width: 320px;
+  min-width: 320px;
+  height: calc(100vh - 36px);
+  position: sticky;
+  top: 18px;
+  padding: 16px;
+  transition: 0.25s ease;
+  overflow: hidden;
+}
+
+.dashSidebar.closed {
+  width: 90px;
+  min-width: 90px;
+}
+
+.dashMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dashTop {
+  padding: 14px 16px;
+}
+
+.topH {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.dashContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.sideHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.brandMini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sideTitleText {
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.iconBtn {
+  border: 1px solid rgba(59,130,246,0.18);
+  background: rgba(255,255,255,0.05);
+  color: #eaf1ff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.iconBtn:hover {
+  border-color: rgba(59,130,246,0.45);
+  transform: translateY(-1px);
+}
+
+.sideUser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+}
+
+.sideUserText {
+  min-width: 0;
+}
+
+.sideName {
+  font-weight: 900;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sideActions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.sideActions .btn {
+  padding: 10px 12px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 14px 0;
+}
+
+.sideLink {
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(59,130,246,0.18);
+  background: rgba(255,255,255,0.05);
+  color: #eaf1ff;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 800;
+}
+
+.sideLink:hover {
+  transform: translateY(-1px);
+  border-color: rgba(59,130,246,0.35);
+}
+
+.sideLink.active {
+  background: rgba(59,130,246,0.18);
+  border-color: rgba(59,130,246,0.45);
+}
+
+.sideSectionTitle {
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+/* Dropdown category */
+.dropdownBlock {
+  margin-bottom: 10px;
+}
+
+.dropBtn {
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(59,130,246,0.18);
+  background: rgba(255,255,255,0.05);
+  color: #eaf1ff;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(59,130,246,0.35);
+}
+
+.dropList {
+  display: none;
+  padding: 10px 10px 0 10px;
+}
+
+.dropList.open {
+  display: block;
+}
+
+.childBtn {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: rgba(234,241,255,0.92);
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.childBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(59,130,246,0.35);
+}
+
+/* Sidebar closed behavior (hide text) */
+.dashSidebar.closed .sideUserText,
+.dashSidebar.closed .sideActions,
+.dashSidebar.closed .divider,
+.dashSidebar.closed .sideLink,
+.dashSidebar.closed .sideSectionTitle,
+.dashSidebar.closed .dropBtn span,
+.dashSidebar.closed .dropList {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .dashWrap {
+    flex-direction: column;
+    padding: 14px;
+  }
+
+  .dashSidebar {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    position: relative;
+    top: 0;
+  }
+}
+
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
   .container {
