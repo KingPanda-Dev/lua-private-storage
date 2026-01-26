@@ -13,6 +13,7 @@ async function loadConfig() {
 loadConfig()
 
 function isAllowed(id) {
+  id = String(id).trim()
   return OWNER_IDS.includes(id) || ALLOWED_IDS.includes(id)
 }
 
