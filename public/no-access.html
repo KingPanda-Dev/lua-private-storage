@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>No Access</title>
+  <style>
+    body { visibility: hidden; }
+  </style>
   <link rel="stylesheet" href="/css/theme.css">
 </head>
 <body>
@@ -30,9 +33,13 @@
   </div>
 
   <script>
-    async function logout() {
-      await fetch("/api/auth/logout")
-      location.href = "/"
+    window.logout = async function () {
+      try {
+        await fetch("/api/auth/logout", { method: "GET", cache: "no-store" })
+      } catch (e) {}
+    
+      // hard reload biar ga kebaca session lama dari cache
+      location.replace("/?logout=" + Date.now())
     }
     
     async function init() {
@@ -44,6 +51,7 @@
         location.href = "/404"
         return
       }
+      document.body.style.visibility = "visible"
     }
     
     init()
