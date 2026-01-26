@@ -1020,24 +1020,36 @@ body {
   }
 }
 
-/* FIX dropdown kepotong di PC */
-.sidebar,
-.sidebarFooter {
+/* ===== FORCE DROPDOWN WORK (PC) ===== */
+
+/* sidebar harus bisa scroll + tidak ngeclip anak */
+.sidebar {
   overflow: visible !important;
 }
 
-/* dropdown wrapper harus bisa expand */
+/* bagian menu harus bisa expand & scroll */
+.sidebarFooter {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* dropdown wrapper default hidden */
 .dropWrap {
-  display: none;
+  display: none !important;
   margin-top: 8px;
+  padding-left: 6px;
 }
 
+/* kalau show -> tampil */
 .dropWrap.show {
-  display: block;
+  display: block !important;
 }
 
-/* biar animasi halus (opsional) */
-.dropWrap.show .navBtn.child {
-  opacity: 1;
-  transform: translateY(0);
+/* biar tombol child rapih */
+.navBtn.child {
+  margin-top: 6px;
 }
