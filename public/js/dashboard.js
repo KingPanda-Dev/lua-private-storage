@@ -10,7 +10,7 @@ async function loadConfig() {
   ALLOWED_IDS = cfg.allowed || []
 }
 
-loadConfig()
+await loadConfig()
 
 function isAllowed(id) {
   return OWNER_IDS.includes(id) || ALLOWED_IDS.includes(id)
