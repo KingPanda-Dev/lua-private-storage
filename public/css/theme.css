@@ -1023,3 +1023,25 @@ body {
     display: none;
   }
 }
+
+/* FIX dropdown kepotong di PC */
+.sidebar,
+.sidebarFooter {
+  overflow: visible !important;
+}
+
+/* dropdown wrapper harus bisa expand */
+.dropWrap {
+  display: none;
+  margin-top: 8px;
+}
+
+.dropWrap.show {
+  display: block;
+}
+
+/* biar animasi halus (opsional) */
+.dropWrap.show .navBtn.child {
+  opacity: 1;
+  transform: translateY(0);
+}
