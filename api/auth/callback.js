@@ -29,7 +29,7 @@ export default async function handler(req, res) {
   )
 
   if (!PERMISSION.ALLOWED_USERS.includes(user.id)) {
-    res.writeHead(302, { Location: "/public/no-access.html" })
+    res.writeHead(302, { Location: "/no-access" })
     return res.end()
   }
 
