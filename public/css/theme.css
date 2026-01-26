@@ -918,6 +918,20 @@ body {
   background: radial-gradient(900px 500px at 70% 40%, rgba(59,130,246,0.12), transparent 65%);
   opacity: 1;
 }
+  
+/* ===== SIDEBAR DEFAULT (PC) ===== */
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  height: calc(100vh - 36px);
+  position: sticky;
+  top: 18px;
+  padding: 16px;
+  overflow: visible;
+  transform: none;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+}
 
 /* ===== Desktop Fill Layout ===== */
 #pageContent {
