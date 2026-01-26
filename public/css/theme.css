@@ -199,6 +199,8 @@ body {
 }
 
 .sidebarFooter {
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 14px;
   padding-top: 14px;
   border-top: 1px solid rgba(255,255,255,0.08);
@@ -539,13 +541,7 @@ body {
   background: rgba(59,130,246,0.18);
   border-color: rgba(59,130,246,0.45);
 }
-
-.sidebarFooter {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
+  
 /* right content */
 .content {
   flex: 1;
