@@ -66,7 +66,6 @@ window.showPage = function (page) {
           <h3>🔐 Rules</h3>
           <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
         </div>
-        
       return
     }
     title.innerText = "Coming Soon"
@@ -77,12 +76,14 @@ window.showPage = function (page) {
         <p>This page will be connected to file downloads later.</p>
       </div>
 }
+
 /* ===== Logout ===== */
 window.logout = async function () {
   try {
     // pastiin endpoint ini ada: /api/auth/logout.js
     await fetch("/api/auth/logout", { method: "GET" })
-  } catch (e) {} location.href = "/"
+  } catch (e) {}
+  location.href = "/"
 }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 /* ===== Auth check ===== */
