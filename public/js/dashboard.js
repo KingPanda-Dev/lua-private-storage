@@ -52,6 +52,9 @@ window.showPage = function (page) {
   if (window.matchMedia("(max-width: 900px)").matches) {
     closeSidebar()
   }
+  if (window.matchMedia("(min-width: 901px)").matches) {
+    closeSidebar()
+  }
 
   const introBtn = document.getElementById("btnIntro")
   if (introBtn) introBtn.classList.remove("active")
