@@ -96,39 +96,38 @@ async function getMe() {
 }
 
 async function init() {
-  // 🔥 WAJIB: tunggu config dulu
   try {
-    await loadConfig()
+    await loadConfig() // penting biar OWNER_IDS & ALLOWED_IDS ke-load dulu
+
+    const me = await getMe()
+
+    // belum login => 404
+    if (!me || me.error || !me.id) {
+      location.replace("/404")
+      return
+    }
+
+    // login tapi ga allowed => no-access (tanpa flash intro)
+    if (!isAllowed(me.id)) {
+      location.replace("/no-access")
+      return
+    }
+
+    // ==== BARU BOLEH TAMPILKAN DASHBOARD ====
+    document.body.style.visibility = "visible"
+
+    const avatarUrl = me.avatar
+      ? `https://cdn.discordapp.com/avatars/${me.id}/${me.avatar}.png?size=128`
+      : `https://cdn.discordapp.com/embed/avatars/0.png`
+
+    document.getElementById("sideAvatar").src = avatarUrl
+    document.getElementById("sideName").innerText = me.username || "User"
+    document.getElementById("sideId").innerText = `ID: ${me.id}`
+
+    showPage("intro")
   } catch (e) {
-    console.log("Config load failed:", e)
-    // kalau config gagal load, mending anggap no access
-    location.href = "/404"
-    return
+    location.replace("/404")
   }
-
-  const me = await getMe()
-
-  // belum login => 404
-  if (!me || me.error || !me.id) {
-    location.href = "/404"
-    return
-  }
-
-  // login tapi ga allowed => no-access
-  if (!isAllowed(me.id)) {
-    location.href = "/no-access"
-    return
-  }
-
-  const avatarUrl = me.avatar
-    ? `https://cdn.discordapp.com/avatars/${me.id}/${me.avatar}.png?size=128`
-    : `https://cdn.discordapp.com/embed/avatars/0.png`
-
-  document.getElementById("sideAvatar").src = avatarUrl
-  document.getElementById("sideName").innerText = me.username || "User"
-  document.getElementById("sideId").innerText = `ID: ${me.id}`
-
-  showPage("intro")
 }
 
 init()
