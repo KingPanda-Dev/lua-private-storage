@@ -58,13 +58,38 @@ window.showPage = function (page) {
       title.innerText = "Introduction"
       desc.innerText = "Welcome to KingPanda private storage dashboard."
       content.innerHTML = `
-        <div class="glass card">
+        <div class="glass card full">
           <h3>👋 Welcome</h3>
           <p>This dashboard is private. Access is limited and downloads are protected.</p>
+          <div class="row" style="margin-top:12px">
+            <button class="btn primary" onclick="alert('Soon: download scripts')">Browse Scripts</button>
+            <button class="btn" onclick="alert('Soon: license codes')">License Info</button>
+          </div>
         </div>
+      
+        <div class="glass card">
+          <h3>📦 Storage</h3>
+          <p>Scripts are hosted privately and protected with access rules.</p>
+        </div>
+      
+        <div class="glass card">
+          <h3>🧩 Categories</h3>
+          <p>GrowPai & GrowLauncher are separated for clean management.</p>
+        </div>
+      
         <div class="glass card">
           <h3>🔐 Rules</h3>
           <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
+        </div>
+      
+        <div class="glass card">
+          <h3>🛰 Status</h3>
+          <p>Discord login active. Permission check enabled.</p>
+        </div>
+      
+        <div class="glass card">
+          <h3>🧾 Logs</h3>
+          <p>Download logs will be sent to Discord webhook (owner).</p>
         </div>
       `
       return
