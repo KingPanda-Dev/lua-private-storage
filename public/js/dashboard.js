@@ -57,7 +57,7 @@ window.showPage = function (page) {
       document.getElementById("btnIntro").classList.add("active")
       title.innerText = "Introduction"
       desc.innerText = "Welcome to KingPanda private storage dashboard."
-      content.innerHTML =
+      content.innerHTML = `
         <div class="glass card">
           <h3>👋 Welcome</h3>
           <p>This dashboard is private. Access is limited and downloads are protected.</p>
@@ -66,15 +66,17 @@ window.showPage = function (page) {
           <h3>🔐 Rules</h3>
           <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
         </div>
+      `
       return
     }
     title.innerText = "Coming Soon"
     desc.innerText = "Design first, scripts later."
-    content.innerHTML =
+    content.innerHTML = `
       <div class="glass card">
         <h3>🛠 ${page}</h3>
         <p>This page will be connected to file downloads later.</p>
       </div>
+    `
 }
 
 /* ===== Logout ===== */
