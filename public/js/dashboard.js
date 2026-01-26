@@ -42,7 +42,7 @@ window.toggleDrop = function (id) {
 }
 
 /* ===== Pages ===== */
-  window.showPage = function (page) {
+window.showPage = function (page) {
     const title = document.getElementById("pageTitle")
     const desc = document.getElementById("pageDesc")
     const content = document.getElementById("pageContent")
@@ -57,7 +57,33 @@ window.toggleDrop = function (id) {
       document.getElementById("btnIntro").classList.add("active")
       title.innerText = "Introduction"
       desc.innerText = "Welcome to KingPanda private storage dashboard."
-      content.innerHTML = <div class="glass card"> <h3>👋 Welcome</h3> <p>This dashboard is private. Access is limited and downloads are protected.</p> </div> <div class="glass card"> <h3>🔐 Rules</h3> <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p> </div> return } title.innerText = "Coming Soon" desc.innerText = "Design first, scripts later." content.innerHTML = <div class="glass card"> <h3>🛠 ${page}</h3> <p>This page will be connected to file downloads later.</p> </div> } /* ===== Logout ===== */ window.logout = async function () { try { // pastiin endpoint ini ada: /api/auth/logout.js await fetch("/api/auth/logout", { method: "GET" }) } catch (e) {} location.href = "/" }
+      content.innerHTML =
+        <div class="glass card">
+          <h3>👋 Welcome</h3>
+          <p>This dashboard is private. Access is limited and downloads are protected.</p>
+        </div>
+        <div class="glass card">
+          <h3>🔐 Rules</h3>
+          <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
+        </div>
+        
+      return
+    }
+    title.innerText = "Coming Soon"
+    desc.innerText = "Design first, scripts later."
+    content.innerHTML =
+      <div class="glass card">
+        <h3>🛠 ${page}</h3>
+        <p>This page will be connected to file downloads later.</p>
+      </div>
+}
+/* ===== Logout ===== */
+window.logout = async function () {
+  try {
+    // pastiin endpoint ini ada: /api/auth/logout.js
+    await fetch("/api/auth/logout", { method: "GET" })
+  } catch (e) {} location.href = "/"
+}
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 /* ===== Auth check ===== */
 async function getMe() {
