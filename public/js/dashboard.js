@@ -14,7 +14,7 @@ loadConfig()
 
 function isAllowed(id) {
   id = String(id).trim()
-  return OWNER_IDS.includes(id) || ALLOWED_IDS.includes(id)
+  return ALLOWED_IDS.includes(id) || OWNER_IDS.includes(id)
 }
 
 /* ===== Sidebar control ===== */
