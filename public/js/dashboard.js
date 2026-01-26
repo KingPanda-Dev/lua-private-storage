@@ -82,10 +82,11 @@ window.showPage = function (page) {
 /* ===== Logout ===== */
 window.logout = async function () {
   try {
-    // pastiin endpoint ini ada: /api/auth/logout.js
-    await fetch("/api/auth/logout", { method: "GET" })
+    await fetch("/api/auth/logout", { method: "GET", cache: "no-store" })
   } catch (e) {}
-  location.href = "/"
+
+  // hard reload biar ga kebaca session lama dari cache
+  location.replace("/?logout=" + Date.now())
 }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 /* ===== Auth check ===== */
