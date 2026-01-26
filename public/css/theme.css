@@ -919,6 +919,26 @@ body {
   opacity: 1;
 }
 
+.sidebar {
+  overflow: visible !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 86%;
+  max-width: 320px;
+  min-width: unset;
+  z-index: 1000;
+  transform: translateX(-110%);
+  transition: transform 0.25s ease;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0;
+}
+
+.sidebar.open {
+  transform: translateX(0%);
+}
+
 /* ===== Desktop Fill Layout ===== */
 #pageContent {
   display: grid;
@@ -939,25 +959,6 @@ body {
   
   #pageContent {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 86%;
-    max-width: 320px;
-    min-width: unset;
-    z-index: 1000;
-    transform: translateX(-110%);
-    transition: transform 0.25s ease;
-    border-right: 1px solid rgba(255,255,255,0.08);
-    border-radius: 0;
-  }
-
-  .sidebar.open {
-    transform: translateX(0%);
   }
 }
   
@@ -984,25 +985,6 @@ body {
     flex-direction: row; /* PENTING: jangan column */
     padding: 0;
     gap: 0;
-  }
-
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 86%;
-    max-width: 320px;
-    min-width: unset;
-    z-index: 1000;
-    transform: translateX(-110%);
-    transition: transform 0.25s ease;
-    border-right: 1px solid rgba(255,255,255,0.08);
-    border-radius: 0;
-  }
-
-  .sidebar.open {
-    transform: translateX(0%);
   }
 
   .content {
