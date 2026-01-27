@@ -35,11 +35,11 @@ window.closeSidebar = function () {
 }
 
 /* ===== Dropdown ===== */
-window.toggleDrop = function (id) {
+window.toggleDrop = function (id, btn) {
   const el = document.getElementById(id)
   if (!el) return
-
   el.classList.toggle("show")
+  if (btn) btn.classList.toggle("open")
 }
 
 /* ===== Pages ===== */
