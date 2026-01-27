@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>KingPanda Lua Storage</title>
 
   <style>
@@ -72,9 +72,11 @@
       position:relative;
       height:100dvh;
       display:flex;
-      align-items:center;
+      align-items: flex-start;
       justify-content:center;
       padding:24px;
+      padding-top: calc(24px + 12px); /* buffer atas Android */
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
     }
 
     /* glass card */
@@ -304,6 +306,9 @@
 
     /* responsive */
     @media (max-width: 900px){
+      body {
+        padding-top: 12px; /* Android status bar buffer */
+      }
       .content{grid-template-columns:1fr}
       .features{grid-template-columns:1fr}
     }
