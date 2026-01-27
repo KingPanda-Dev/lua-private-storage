@@ -1,10 +1,8 @@
-import { getRedis } from "../lib/redis.js";
+// api/test.js
+import { redis } from "../lib/redis.js";
 
 export default async function handler(req, res) {
-  const redis = await getRedis();
-
-  await redis.set("hello", "world");
-  const data = await redis.get("hello");
-
-  res.json({ data });
+  await redis.set("ping", "pong");
+  const v = await redis.get("ping");
+  res.json({ ok: true, v });
 }
