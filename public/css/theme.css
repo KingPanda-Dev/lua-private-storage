@@ -927,6 +927,20 @@ body {
   grid-column: 1 / -1;
 }
 
+/* overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+  
 /* Ultra wide monitor */
 @media (min-width: 901px) {
   #sidebarToggle {
@@ -985,20 +999,6 @@ body {
   .content {
     width: 100%;
     padding: 14px;
-  }
-
-  /* overlay */
-  .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(6px);
-    z-index: 999;
-    display: none;
-  }
-
-  .overlay.show {
-    display: block;
   }
   
   .sidebar.mobileHide {
