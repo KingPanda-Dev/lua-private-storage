@@ -940,6 +940,9 @@ body {
   
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
+  #sidebarToggle {
+    display: inline-flex;
+  }
   
   .sidebar {
     position: fixed;
