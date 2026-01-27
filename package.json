@@ -1,0 +1,11 @@
+{
+  "name": "lua-private-storage-by-kingpanda",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "redis": "^4.6.7"
+  }
+}
