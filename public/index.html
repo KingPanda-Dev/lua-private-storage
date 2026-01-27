@@ -24,7 +24,7 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      overscroll-behavior: none;
+      height: auto;
       overscroll-behavior-y: auto;
       min-height: 100dvh;
       overflow-x: hidden;                     /* FIX: goyang kiri kanan */
@@ -70,7 +70,7 @@
     /* app container */
     .wrap{
       position:relative;
-      height:100vh;
+      min-height: 100vh;
       display:flex;
       align-items: center;
       justify-content:center;
@@ -311,8 +311,6 @@
       }
       .wrap{
         position:relative;
-        min-height: 100svh; /* lebih stabil buat mobile */
-        height: 100dvh;
         display:flex;
         align-items: flex-start;
         justify-content:center;
