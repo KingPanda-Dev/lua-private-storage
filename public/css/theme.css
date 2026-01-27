@@ -38,6 +38,16 @@ body {
   border-radius: 14px;
 }
 
+.navBtn .arrow {
+  float:right;
+  transition: transform 0.25s ease;
+}
+
+.navBtn.open .arrow {
+  float:right;
+  transform: rotate(180deg);
+}
+
 /* ===== Layout Container ===== */
 .container {
   width: 100%;
