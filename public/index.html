@@ -70,9 +70,9 @@
     /* app container */
     .wrap{
       position:relative;
-      height:100dvh;
+      height:100vh;
       display:flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content:center;
       padding:24px;
       padding-top: calc(24px + 12px); /* buffer atas Android */
@@ -307,7 +307,19 @@
     /* responsive */
     @media (max-width: 900px){
       body {
+        overflow-y: auto;
+        overflow-x: hidden;
         padding-top: 12px; /* Android status bar buffer */
+      }
+      .wrap{
+        position:relative;
+        min-height: 100svh; /* lebih stabil buat mobile */
+        display:flex;
+        align-items: flex-start;
+        justify-content:center;
+        padding:24px;
+        padding-top: calc(24px + 12px); /* buffer atas Android */
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
       }
       .content{grid-template-columns:1fr}
       .features{grid-template-columns:1fr}
