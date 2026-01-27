@@ -32,24 +32,6 @@ body {
     linear-gradient(180deg, #060912 0%, #070b16 50%, #060913 100%);
 }
 
-/* floating decor */
-.orb{
-  position:absolute;
-  width:100vh;height:100vh;
-  border-radius:50%;
-  filter: blur(30px);
-  opacity:.35;
-  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.9), transparent 60%);
-  animation: float 6s ease-in-out infinite;
-  pointer-events:none;
-}
-.orb.o1{left:-120px;top:-120px}
-.orb.o2{right:-160px;top:120px;opacity:.25;animation-duration:7.5s}
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(18px)}
-}
-
 .hamburger {
   display: none;
   padding: 10px 12px;
