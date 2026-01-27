@@ -149,6 +149,10 @@ body {
 }
 
 /* ===== Dashboard Layout ===== */
+.container {
+  padding: 16px;
+}
+
 .app {
   display: flex;
   gap: 16px;
@@ -588,15 +592,6 @@ body {
   pointer-events: none;
   background: radial-gradient(900px 500px at 70% 40%, rgba(59,130,246,0.12), transparent 65%);
   opacity: 1;
-}
-
-.container {
-  padding: 16px;
-}
-
-.app {
-  flex-direction: column;
-  padding: 14px;
 }
 
 /* ===== Desktop Fill Layout ===== */
