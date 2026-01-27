@@ -75,8 +75,6 @@
       align-items: center;
       justify-content:center;
       padding:24px;
-      padding-top: calc(24px + 12px); /* buffer atas Android */
-      padding-bottom: calc(24px + env(safe-area-inset-bottom));
     }
 
     /* glass card */
@@ -314,6 +312,7 @@
       .wrap{
         position:relative;
         min-height: 100svh; /* lebih stabil buat mobile */
+        height: 100dvh;
         display:flex;
         align-items: flex-start;
         justify-content:center;
