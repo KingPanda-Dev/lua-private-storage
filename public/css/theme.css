@@ -201,6 +201,9 @@ body {
 .sidebarFooter {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.sidebarFooter {
   margin-top: 14px;
   padding-top: 14px;
   border-top: 1px solid rgba(255,255,255,0.08);
@@ -656,13 +659,15 @@ body {
 
 /* ===== Dashboard New Layout ===== */
 .dropWrap {
-  display: none;
-  padding-left: 10px;
-  margin-bottom: 10px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
 }
 
 .dropWrap.show {
-  display: block;
+  max-height: 500px;
+  opacity: 1;
 }
 
 .navBtn.child {
@@ -999,40 +1004,4 @@ body {
   .sidebar.mobileHide {
     display: none;
   }
-}
-
-/* ===== FORCE DROPDOWN WORK (PC) ===== */
-
-/* sidebar harus bisa scroll + tidak ngeclip anak */
-.sidebar {
-  overflow: visible !important;
-}
-
-/* bagian menu harus bisa expand & scroll */
-.sidebarFooter {
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  flex: 1 !important;
-  min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* dropdown wrapper default hidden */
-.dropWrap {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease, opacity 0.2s ease;
-  opacity: 0;
-}
-
-/* ketika dibuka */
-.dropWrap.show {
-  max-height: 300px; /* cukup buat isi dropdown */
-  opacity: 1;
-}
-
-/* biar tombol child rapih */
-.navBtn.child {
-  margin-top: 6px;
 }
