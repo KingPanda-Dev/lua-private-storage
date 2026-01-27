@@ -927,26 +927,12 @@ body {
   grid-column: 1 / -1;
 }
 
-/* overlay */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(6px);
-  z-index: 999;
-  display: none;
-}
-
-.overlay.show {
-  display: block;
+#sidebarToggle {
+  display: none !important;
 }
   
 /* Ultra wide monitor */
 @media (min-width: 901px) {
-  #sidebarToggle {
-    display: none !important;
-  }
-  
   #pageContent {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -999,6 +985,20 @@ body {
   .content {
     width: 100%;
     padding: 14px;
+  }
+
+  /* overlay */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    display: none;
+  }
+  
+  .overlay.show {
+    display: block;
   }
   
   .sidebar.mobileHide {
