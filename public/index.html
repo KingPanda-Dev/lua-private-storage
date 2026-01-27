@@ -24,6 +24,7 @@
       margin: 0;
       padding: 0;
       width: 100%;
+      overscroll-behavior: none;
       min-height: 100dvh;
       overflow-x: hidden;                     /* FIX: goyang kiri kanan */
       background-color: #0b1016!important;    /* FIX: putih putih di HP */
@@ -44,6 +45,8 @@
         radial-gradient(800px 600px at 50% 120%, rgba(59,130,246,.10), transparent 60%),
         linear-gradient(180deg, #0b1016, var(--bg));
       overflow:hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     /* floating decor */
@@ -67,7 +70,7 @@
     /* app container */
     .wrap{
       position:relative;
-      height:100vh;
+      height:100dvh;
       display:flex;
       align-items:center;
       justify-content:center;
