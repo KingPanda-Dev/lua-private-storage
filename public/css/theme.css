@@ -927,8 +927,10 @@ body {
   grid-column: 1 / -1;
 }
 
-#sidebarToggle {
-  display: none !important;
+.hamburger {
+  display: none;
+  padding: 10px 12px;
+  border-radius: 14px;
 }
   
 /* Ultra wide monitor */
@@ -940,8 +942,8 @@ body {
   
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
-  #sidebarToggle {
-    display: inline-flex;
+  .hamburger {
+    display: block;
   }
   
   .sidebar {
