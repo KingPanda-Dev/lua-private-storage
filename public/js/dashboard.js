@@ -1,6 +1,8 @@
 // ====== CONFIG (LOAD FROM API) ======
 let OWNER_IDS = []
 let ALLOWED_IDS = []
+let files = []
+let allFiles = []
 
 async function loadConfig() {
   const r = await fetch("/api/config", { cache: "no-store" })
@@ -60,11 +62,6 @@ window.showPage = function (page) {
 
   const introBtn = document.getElementById("btnIntro")
   if (introBtn) introBtn.classList.remove("active")
-
-  // OWNER PANEL CHECK
-  if (isOwner(me.id)) {
-    document.getElementById("btnOwner").style.display = "block"
-  }
 
   if (page === "intro") {
     if (introBtn) introBtn.classList.add("active")
@@ -282,6 +279,11 @@ async function init() {
     if (!isAllowed(me.id)) {
       location.replace("/no-access")
       return
+    }
+
+    // OWNER PANEL CHECK
+    if (isOwner(me.id)) {
+      document.getElementById("btnOwner").style.display = "block"
     }
 
     // ==== BARU BOLEH TAMPILKAN DASHBOARD ====
