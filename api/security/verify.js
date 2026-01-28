@@ -1,33 +1,20 @@
 import { redis } from "../../lib/redis.js";
 
-const OWNER_ID = process.env.OWNER_DISCORD_IDS || ""; // nanti bisa dari env
-
-function genCode() {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let out = "";
-  for (let i = 0; i < 6; i++) {
-    out += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return out;
-}
-
 export default async function handler(req, res) {
-  const { ownerId } = req.query;
+  const { code } = req.body || {};
 
-  if (ownerId !== OWNER_ID) {
-    return res.status(403).json({ error: "forbidden" });
+  if (!code || !/^[A-Z]{6}$/.test(code)) {
+    return res.status(400).json({ error: "invalid_format" });
   }
 
-  const code = genCode();
+  const exists = await redis.get(`security:code:${code}`);
 
-  await redis.set(
-    `security:code:${code}`,
-    "valid",
-    { ex: 60 * 60 } // 1 jam
-  );
+  if (!exists) {
+    return res.status(401).json({ error: "invalid_or_expired" });
+  }
 
-  res.json({
-    code,
-    expires_in: "1 hour"
-  });
+  // optional: hapus biar 1x pakai
+  await redis.del(`security:code:${code}`);
+
+  res.json({ ok: true });
 }
