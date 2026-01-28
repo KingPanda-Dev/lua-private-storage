@@ -15,6 +15,11 @@ function isAllowed(id) {
   return OWNER_IDS.includes(id) || ALLOWED_IDS.includes(id)
 }
 
+function isOwner(id) {
+  id = String(id).trim()
+  return OWNER_IDS.includes(id)
+}
+
 /* ===== Sidebar control ===== */
 window.openSidebar = function () {
   const sidebar = document.getElementById("sidebar")
@@ -55,6 +60,11 @@ window.showPage = function (page) {
 
   const introBtn = document.getElementById("btnIntro")
   if (introBtn) introBtn.classList.remove("active")
+
+  // OWNER PANEL CHECK
+  if (isOwner(me.id)) {
+    document.getElementById("btnOwner").style.display = "block"
+  }
 
   if (page === "intro") {
     if (introBtn) introBtn.classList.add("active")
@@ -98,6 +108,48 @@ window.showPage = function (page) {
     return
   }
 
+  if (page === "owner") {
+    title.innerText = "Owner Panel"
+    desc.innerText = "Manage file codes & access control"
+  
+    content.innerHTML = `
+      <div class="glass card full owner-panel">
+  
+        <div class="owner-head">
+          <h3>🔐 Owner File Control</h3>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search by file title..."
+            oninput="filterFiles()"
+          />
+        </div>
+  
+        <div class="table-wrap">
+          <table class="file-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Code</th>
+                <th>Expire</th>
+                <th>Used</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="fileTableBody"></tbody>
+          </table>
+        </div>
+  
+        <div id="pagination" class="pagination"></div>
+  
+      </div>
+    `
+  
+    renderTable()
+    return
+  }
+
   title.innerText = "Coming Soon"
   desc.innerText = "Design first, scripts later."
   content.innerHTML = `
@@ -116,6 +168,93 @@ window.logout = async function () {
 
   location.replace("/?logout=" + Date.now())
 }
+
+function toggleEdit(id) {
+  document.querySelectorAll(".edit-box").forEach(b => b.classList.remove("open"))
+  const box = document.getElementById("edit-" + id)
+  if (box) box.classList.toggle("open")
+}
+
+function saveEdit(id) {
+  const f = files.find(x => x.id === id)
+  const hours = Number(document.getElementById("time-" + id).value)
+  const limit = Number(document.getElementById("limit-" + id).value)
+
+  f.expireAt = Date.now() + hours * 3600000
+  f.limit = limit
+
+  toggleEdit(id)
+  renderTable()
+}
+
+function filterFiles() {
+  const q = document.getElementById("searchInput").value.toLowerCase()
+  files = files.filter(f => f.title.toLowerCase().includes(q))
+  renderTable()
+}
+
+function formatTime(ms) {
+  if (ms <= 0) return "Expired"
+  const m = Math.floor(ms / 60000)
+  const s = Math.floor((ms % 60000) / 1000)
+  return `${m}m ${s}s`
+}
+
+function renderTable() {
+  const body = document.getElementById("fileTableBody")
+  body.innerHTML = ""
+
+  files.forEach(file => {
+    const tr = document.createElement("tr")
+
+    tr.innerHTML = `
+      <td>${file.title}</td>
+      <td>${file.category}</td>
+      <td>${file.code}</td>
+      <td id="exp-${file.id}"></td>
+      <td>${file.used}/${file.limit === -1 ? "∞" : file.limit}</td>
+      <td>
+        <button class="edit-btn" onclick="toggleEdit('${file.id}')">Edit</button>
+      </td>
+    `
+    body.appendChild(tr)
+
+    // edit row
+    const edit = document.createElement("tr")
+    edit.innerHTML = `
+      <td colspan="6">
+        <div class="edit-box" id="edit-${file.id}">
+          <div class="edit-grid">
+            <select id="time-${file.id}">
+              <option value="1">1 Hour</option>
+              <option value="6">6 Hours</option>
+              <option value="24">1 Day</option>
+            </select>
+            <select id="limit-${file.id}">
+              <option value="1">1x</option>
+              <option value="3">3x</option>
+              <option value="5">5x</option>
+              <option value="-1">Unlimited</option>
+            </select>
+          </div>
+
+          <div class="edit-footer">
+            <button class="btn btn-cancel" onclick="toggleEdit('${file.id}')">Cancel</button>
+            <button class="btn btn-save" onclick="saveEdit('${file.id}')">Save</button>
+          </div>
+        </div>
+      </td>
+    `
+    body.appendChild(edit)
+  })
+}
+
+setInterval(() => {
+  files.forEach(f => {
+    const el = document.getElementById("exp-" + f.id)
+    if (el) el.innerText = formatTime(f.expireAt - Date.now())
+  })
+}, 1000)
 
 /* ===== Auth check ===== */
 async function getMe() {
