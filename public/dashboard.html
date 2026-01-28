@@ -50,6 +50,7 @@
 
         <div class="sidebarFooter">
           <button class="navBtn active" id="btnIntro" onclick="showPage('intro')">📘 Introduction</button>
+          <button class="navBtn" id="btnOwner" style="display:none" onclick="showPage('owner')">🛠 Owner Panel</button>
 
           <div style="margin:12px 0; height:1px; background:rgba(255,255,255,0.08);"></div>
 
@@ -102,6 +103,42 @@
           <div class="glass card">
             <h3>🔐 Rules</h3>
             <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
+          </div>
+
+          <div class="glass card full owner-panel">
+            <!-- Header -->
+            <div class="owner-head">
+              <h3>🔐 Owner File Control</h3>
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Search by file title..."
+                oninput="filterFiles()"
+              />
+            </div>
+          
+            <!-- Table -->
+            <div class="table-wrap">
+              <table class="file-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Code</th>
+                    <th>Expire</th>
+                    <th>Used</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+          
+                <tbody id="fileTableBody">
+                  <!-- rows injected by JS -->
+                </tbody>
+              </table>
+            </div>
+          
+            <!-- Pagination -->
+            <div id="pagination" class="pagination"></div>
           </div>
         </div>
 
