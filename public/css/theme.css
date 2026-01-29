@@ -646,11 +646,13 @@ body {
 
 /* table */
 .table-wrap {
-  overflow-x: auto;
+  width: 100%;
+  overflow-x: auto;        /* scroll kanan-kiri */
+  -webkit-overflow-scrolling: touch;
 }
 
 .file-table {
-  width: 100%;
+  min-width: 900px;        /* PENTING: biar gak maksa kecil */
   border-collapse: collapse;
   font-size: 13px;
 }
