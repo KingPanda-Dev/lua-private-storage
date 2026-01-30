@@ -157,51 +157,12 @@ window.showPage = function (page) {
   `
 }
 
-/* ===== Logout ===== */
-window.logout = async function () {
-  try {
-    await fetch("/api/auth/logout", { method: "GET", cache: "no-store" })
-  } catch (e) {}
 
-  location.replace("/?logout=" + Date.now())
-}
-
-function toggleEdit(id) {
-  document.querySelectorAll(".edit-box").forEach(b => b.classList.remove("open"))
-  const box = document.getElementById("edit-" + id)
-  if (box) box.classList.toggle("open")
-}
-
-function saveEdit(id) {
-  const f = files.find(x => x.id === id)
-  const hours = Number(document.getElementById("time-" + id).value)
-  const limit = Number(document.getElementById("limit-" + id).value)
-
-  f.expireAt = Date.now() + hours * 3600000
-  f.limit = limit
-
-  toggleEdit(id)
-  renderTable()
-}
-
-function filterFiles() {
-  const q = document.getElementById("searchInput").value.toLowerCase()
-  files = files.filter(f => f.title.toLowerCase().includes(q))
-  renderTable()
-}
-
-function formatTime(ms) {
-  if (ms <= 0) return "Expired"
-  const m = Math.floor(ms / 60000)
-  const s = Math.floor((ms % 60000) / 1000)
-  return `${m}m ${s}s`
-}
-
-function renderTable() {
+function renderTable(data = files) {
   const body = document.getElementById("fileTableBody")
   body.innerHTML = ""
 
-  files.forEach(file => {
+  data.forEach(file => {
     const tr = document.createElement("tr")
 
     tr.innerHTML = `
@@ -244,6 +205,61 @@ function renderTable() {
     `
     body.appendChild(edit)
   })
+}
+
+/* ===== Logout ===== */
+window.logout = async function () {
+  try {
+    await fetch("/api/auth/logout", { method: "GET", cache: "no-store" })
+  } catch (e) {}
+
+  location.replace("/?logout=" + Date.now())
+}
+
+function toggleEdit(id) {
+  document.querySelectorAll(".edit-box").forEach(b => b.classList.remove("open"))
+  const box = document.getElementById("edit-" + id)
+  if (box) box.classList.toggle("open")
+}
+
+function saveEdit(id) {
+  const f = files.find(x => x.id === id)
+  const hours = Number(document.getElementById("time-" + id).value)
+  const limit = Number(document.getElementById("limit-" + id).value)
+
+  f.expireAt = Date.now() + hours * 3600000
+  f.limit = limit
+
+  toggleEdit(id)
+  renderTable()
+}
+
+function filterFiles(force = false) {
+  const q = document.getElementById("searchInput").value.toLowerCase().trim()
+
+  if (!force && q.length === 0) {
+    renderTable()
+    return
+  }
+
+  const filtered = files.filter(f =>
+    f.title.toLowerCase().includes(q)
+  )
+
+  renderTable(filtered)
+}
+
+function handleSearchKey(e) {
+  if (e.key === "Enter") {
+    filterFiles(true)
+  }
+}
+
+function formatTime(ms) {
+  if (ms <= 0) return "Expired"
+  const m = Math.floor(ms / 60000)
+  const s = Math.floor((ms % 60000) / 1000)
+  return `${m}m ${s}s`
 }
 
 setInterval(() => {
