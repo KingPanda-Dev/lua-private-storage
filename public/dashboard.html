@@ -109,12 +109,22 @@
             <!-- Header -->
             <div class="owner-head">
               <h3>🔐 Owner File Control</h3>
-              <input
-                id="searchInput"
-                type="text"
-                placeholder="Search by file title..."
-                oninput="filterFiles()"
-              />
+              <div class="owner-search">
+                <span class="search-icon">🔍</span>
+              
+                <input
+                  id="searchInput"
+                  type="text"
+                  placeholder="Search by file title..."
+                  onkeydown="handleSearchKey(event)"
+                />
+              
+                <span class="search-divider"></span>
+              
+                <button class="search-enter" onclick="filterFiles(true)">
+                  ENTER
+                </button>
+              </div>
             </div>
           
             <!-- Table -->
