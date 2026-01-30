@@ -11,6 +11,7 @@ html, body {
   overflow-x: hidden;                              /* FIX: goyang kiri kanan */
   background-color: #0b1016!important;             /* FIX: putih putih di HP */
   color: #eaf1ff;
+  scroll-behavior: smooth;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
@@ -652,24 +653,46 @@ body {
 }
 
 .file-table {
-  min-width: 900px;        /* PENTING: biar gak maksa kecil */
+  min-width: 760px; /* biar kolom gak sempit */
   border-collapse: collapse;
-  font-size: 13px;
+  width: 100%;
 }
 
 .file-table th,
 .file-table td {
-  padding: 10px;
   border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 14px 16px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .file-table th {
   color: var(--muted);
-  font-weight: 600;
+  font-size: 13px;
 }
 
-.file-table tr:hover {
-  background: rgba(255,255,255,.03);
+.file-table td {
+  font-size: 13px;
+}
+
+.file-table tbody tr:hover {
+  background: rgba(59,130,246,.08);
+}
+
+/* ===== Sticky Header ===== */
+.file-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* ===== Smooth Scrollbar ===== */
+.table-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+.table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(59,130,246,.4);
+  border-radius: 999px;
 }
 
 /* action btn */
@@ -684,11 +707,11 @@ body {
 
 /* edit dropdown */
 .edit-box {
-  background: rgba(0,0,0,.35);
-  padding: 14px;
-  border-radius: 14px;
-  margin-top: 8px;
   display: none;
+  padding: 16px;
+  background: rgba(15,20,26,.9);
+  border-radius: 14px;
+  margin-top: 10px;
 }
 
 .edit-box.open {
@@ -697,15 +720,14 @@ body {
 
 /* edit layout */
 .edit-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 12px;
 }
 
 .edit-grid select {
-  width: 100%;
+  flex: 1;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 10px;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(59,130,246,.25);
   color: white;
@@ -716,7 +738,7 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .btn-cancel {
@@ -815,6 +837,16 @@ body {
   /* owner panel */
   .edit-grid {
     grid-template-columns: 1fr;
+  }
+
+  .file-table {
+    min-width: 680px;
+  }
+
+  .file-table th,
+  .file-table td {
+    padding: 12px 14px;
+    font-size: 12px;
   }
 }
 
