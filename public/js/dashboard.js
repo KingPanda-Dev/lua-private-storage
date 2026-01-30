@@ -157,56 +157,6 @@ window.showPage = function (page) {
   `
 }
 
-
-function renderTable(data = files) {
-  const body = document.getElementById("fileTableBody")
-  body.innerHTML = ""
-
-  data.forEach(file => {
-    const tr = document.createElement("tr")
-
-    tr.innerHTML = `
-      <td>${file.title}</td>
-      <td>${file.category}</td>
-      <td>${file.code}</td>
-      <td id="exp-${file.id}"></td>
-      <td>${file.used}/${file.limit === -1 ? "∞" : file.limit}</td>
-      <td>
-        <button class="edit-btn" onclick="toggleEdit('${file.id}')">Edit</button>
-      </td>
-    `
-    body.appendChild(tr)
-
-    // edit row
-    const edit = document.createElement("tr")
-    edit.innerHTML = `
-      <td colspan="6">
-        <div class="edit-box" id="edit-${file.id}">
-          <div class="edit-grid">
-            <select id="time-${file.id}">
-              <option value="1">1 Hour</option>
-              <option value="6">6 Hours</option>
-              <option value="24">1 Day</option>
-            </select>
-            <select id="limit-${file.id}">
-              <option value="1">1x</option>
-              <option value="3">3x</option>
-              <option value="5">5x</option>
-              <option value="-1">Unlimited</option>
-            </select>
-          </div>
-
-          <div class="edit-footer">
-            <button class="btn btn-cancel" onclick="toggleEdit('${file.id}')">Cancel</button>
-            <button class="btn btn-save" onclick="saveEdit('${file.id}')">Save</button>
-          </div>
-        </div>
-      </td>
-    `
-    body.appendChild(edit)
-  })
-}
-
 /* ===== Logout ===== */
 window.logout = async function () {
   try {
@@ -260,6 +210,56 @@ function formatTime(ms) {
   const m = Math.floor(ms / 60000)
   const s = Math.floor((ms % 60000) / 1000)
   return `${m}m ${s}s`
+}
+
+
+function renderTable(data = files) {
+  const body = document.getElementById("fileTableBody")
+  body.innerHTML = ""
+
+  data.forEach(file => {
+    const tr = document.createElement("tr")
+
+    tr.innerHTML = `
+      <td>${file.title}</td>
+      <td>${file.category}</td>
+      <td>${file.code}</td>
+      <td id="exp-${file.id}"></td>
+      <td>${file.used}/${file.limit === -1 ? "∞" : file.limit}</td>
+      <td>
+        <button class="edit-btn" onclick="toggleEdit('${file.id}')">Edit</button>
+      </td>
+    `
+    body.appendChild(tr)
+
+    // edit row
+    const edit = document.createElement("tr")
+    edit.innerHTML = `
+      <td colspan="6">
+        <div class="edit-box" id="edit-${file.id}">
+          <div class="edit-grid">
+            <select id="time-${file.id}">
+              <option value="1">1 Hour</option>
+              <option value="6">6 Hours</option>
+              <option value="24">1 Day</option>
+            </select>
+            <select id="limit-${file.id}">
+              <option value="1">1x</option>
+              <option value="3">3x</option>
+              <option value="5">5x</option>
+              <option value="-1">Unlimited</option>
+            </select>
+          </div>
+
+          <div class="edit-footer">
+            <button class="btn btn-cancel" onclick="toggleEdit('${file.id}')">Cancel</button>
+            <button class="btn btn-save" onclick="saveEdit('${file.id}')">Save</button>
+          </div>
+        </div>
+      </td>
+    `
+    body.appendChild(edit)
+  })
 }
 
 setInterval(() => {
