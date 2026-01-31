@@ -101,7 +101,7 @@
           </div>
 
           <div class="glass card">
-            <h3>🔐 Rules</h3>
+            <h3>🔐 Rule</h3>
             <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
           </div>
 
@@ -109,6 +109,28 @@
             <!-- Header -->
             <div class="owner-head">
               <h3>🔐 Owner File Control</h3>
+            </div>
+
+            <div class="glass card full owner-panel">
+            <!-- Header -->
+            <div class="owner-head">
+              <h3>🔐 Owner File Control</h3>
+            </div>
+            
+            <div class="owner-search">
+              <span class="search-icon">🔍</span>
+            
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Search by file title..."
+                onkeydown="handleSearchKey(event)">
+            
+              <span class="search-divider"></span>
+            
+              <button class="search-enter" onclick="filterFiles(true)">
+                ENTER
+              </button>
             </div>
           
             <!-- Table -->
