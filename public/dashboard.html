@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>KingPanda Dashboard</title>
   <style>
     body { visibility: hidden; }
@@ -121,8 +118,7 @@
                 id="searchInput"
                 type="text"
                 placeholder="Search by file title..."
-                onkeydown="handleSearchKey(event)"
-              />
+                onkeydown="handleSearchKey(event)">
             
               <span class="search-divider"></span>
             
@@ -160,6 +156,6 @@
 
     </div>
 
-  <script src="/js/dashboard.js?v=<?= Date.now() ?>"></script>
+  <script src="/js/dashboard.js"></script>
 </body>
 </html>
