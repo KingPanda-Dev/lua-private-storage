@@ -432,7 +432,7 @@
         window.location.href = "/api/auth/login";
       };
       secondaryBtn.style.display = "none";
-      statusEl.textContent = "Tip: after logins, you'll be redirected to dashboard automatically.";
+      statusEl.textContent = "Tip: after login, you'll be redirected to dashboard automatically.";
     }
 
     function setLoggedInUI(user){
@@ -454,7 +454,7 @@
       statusEl.textContent =
         `Discord ID: ${user.id}\n` +
         `Owner: ${user.isOwner ? "YES" : "NO"}\n` +
-        `Permissions: ${user.allowed ? "ALLOWED" : "CHECK DASHBOARD"}`;
+        `Permission: ${user.allowed ? "ALLOWED" : "CHECK DASHBOARD"}`;
     }
 
     // ===== INIT =====
