@@ -95,60 +95,68 @@
         </div>
 
         <div class="grid" id="pageContent">
-          <div class="glass card">
-            <h3>👋 Welcome</h3>
-            <p>This dashboard is private. Access is limited and downloads are protected.</p>
+
+          <!-- INTRO PAGE -->
+          <div id="pageIntro">
+            <div class="glass card">
+              <h3>👋 Welcome</h3>
+              <p>This dashboard is private. Access is limited and downloads are protected.</p>
+            </div>
+  
+            <div class="glass card">
+              <h3>🔐 Ruless</h3>
+              <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
+            </div>
           </div>
 
-          <div class="glass card">
-            <h3>🔐 Ruless</h3>
-            <p>Do not share codes. Do not reupload scripts. Your activity can be logged.</p>
-          </div>
-
-          <div class="glass card full owner-panel">
-            <!-- Header -->
-            <div class="owner-head">
-              <h3>🔐 Owner File Control</h3>
-              <div class="owner-search">
-                <span class="search-icon">🔍</span>
-              
-                <input
-                  id="searchInput"
-                  type="text"
-                  placeholder="Search by file title..."
-                  onkeydown="handleSearchKey(event)">
-              
-                <span class="search-divider"></span>
-              
-                <button class="search-enter" onclick="filterFiles(true)">
-                  ENTER
-                </button>
+          <!-- OWNER PAGE -->
+          <div id="pageOwner">
+            <div class="glass card full owner-panel">
+              <!-- Header -->
+              <div class="owner-head">
+                <h3>🔐 Owner File Control</h3>
+                <div class="owner-search">
+                  <span class="search-icon">🔍</span>
+                
+                  <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search by file title..."
+                    onkeydown="handleSearchKey(event)">
+                
+                  <span class="search-divider"></span>
+                
+                  <button class="search-enter" onclick="filterFiles(true)">
+                    ENTER
+                  </button>
+                </div>
               </div>
+            
+              <!-- Table -->
+              <div class="table-wrap">
+                <table class="file-table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Category</th>
+                      <th>Code</th>
+                      <th>Expire</th>
+                      <th>Used</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+            
+                  <tbody id="fileTableBody">
+                    <!-- rows injected by JS -->
+                  </tbody>
+                </table>
+              </div>
+            
+              <!-- Pagination -->
+              <div id="pagination" class="pagination"></div>
             </div>
-          
-            <!-- Table -->
-            <div class="table-wrap">
-              <table class="file-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Code</th>
-                    <th>Expire</th>
-                    <th>Used</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-          
-                <tbody id="fileTableBody">
-                  <!-- rows injected by JS -->
-                </tbody>
-              </table>
-            </div>
-          
-            <!-- Pagination -->
-            <div id="pagination" class="pagination"></div>
           </div>
+          
         </div>
 
       </main>
