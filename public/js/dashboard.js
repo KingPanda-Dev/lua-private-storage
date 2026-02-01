@@ -54,7 +54,12 @@ window.showPage = function (page) {
   const title = document.getElementById("pageTitle")
   const desc = document.getElementById("pageDesc")
   const content = document.getElementById("pageContent")
+  const intro = document.getElementById("pageIntro")
+  const owner = document.getElementById("pageOwner")
 
+  intro.style.display = "none"
+  owner.style.display = "none"
+  
   // auto close sidebar on mobile after click
   if (window.matchMedia("(max-width: 900px)").matches) {
     closeSidebar()
@@ -65,6 +70,7 @@ window.showPage = function (page) {
 
   if (page === "intro") {
     if (introBtn) introBtn.classList.add("active")
+    intro.style.display = "grid"
     title.innerText = "Introduction"
     desc.innerText = "Welcome to KingPanda private storage dashboard."
     content.innerHTML = `
@@ -106,7 +112,7 @@ window.showPage = function (page) {
   }
 
   if (page === "owner") {
-    document.querySelector(".owner-panel").style.display = "block"
+    owner.style.display = "block"
     renderTable()
     return
   }
