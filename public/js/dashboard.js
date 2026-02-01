@@ -106,43 +106,7 @@ window.showPage = function (page) {
   }
 
   if (page === "owner") {
-    title.innerText = "Owner Panel"
-    desc.innerText = "Manage file codes & access control"
-  
-    content.innerHTML = `
-      <div class="glass card full owner-panel">
-  
-        <div class="owner-head">
-          <h3>🔐 Owner File Control</h3>
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Search by file title..."
-            oninput="filterFiles()"
-          />
-        </div>
-  
-        <div class="table-wrap">
-          <table class="file-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Code</th>
-                <th>Expire</th>
-                <th>Used</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="fileTableBody"></tbody>
-          </table>
-        </div>
-  
-        <div id="pagination" class="pagination"></div>
-  
-      </div>
-    `
-  
+    document.querySelector(".owner-panel").style.display = "block"
     renderTable()
     return
   }
