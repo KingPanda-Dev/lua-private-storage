@@ -621,7 +621,7 @@ body {
 
 /* ===== Owner Panel ===== */
 .owner-panel {
-  display: none;
+  width: 100%;
   padding: 18px;
 }
 
