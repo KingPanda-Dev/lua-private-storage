@@ -64,11 +64,15 @@ body {
 
 /* ===== Card / Glass ===== */
 .glass {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(59,130,246,0.18);
-  border-radius: 18px;
-  box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.02)
+  );
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
 }
 
 .muted {
@@ -197,6 +201,7 @@ body {
   box-shadow: 0 0 0 6px rgba(59,130,246,0.16);
 }
 
+button,
 .navBtn {
   width: 100%;
   text-align: left;
@@ -206,7 +211,7 @@ body {
   background: rgba(255,255,255,0.05);
   color: #eaf1ff;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all .2s ease;
   margin-bottom: 10px;
   font-weight: 700;
 }
@@ -334,13 +339,24 @@ body {
 /* grid cards */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  align-items: stretch;
 }
 
 .card {
-  padding: 16px;
-  width: 100%;
+  padding: 18px;
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .card h3 {
@@ -623,7 +639,11 @@ body {
 /* ===== Owner Panel ===== */
 .owner-panel {
   width: 100%;
-  padding: 18px;
+  padding: 20px;
+}
+
+.owner-panel.full {
+  grid-column: 1 / -1; /* keluar dari grid card */
 }
 
 .owner-head {
@@ -650,21 +670,22 @@ body {
 /* table */
 .table-wrap {
   width: 100%;
-  overflow-x: auto;        /* scroll kanan-kiri */
+  overflow-x: auto;
+  margin-top: 14px;
   -webkit-overflow-scrolling: touch;
 }
 
 .file-table {
-  min-width: 760px; /* biar kolom gak sempit */
-  border-collapse: collapse;
   width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
 }
 
 .file-table th,
 .file-table td {
   border-bottom: 1px solid rgba(255,255,255,.06);
-  padding: 14px 16px;
-  text-align: center;
+  padding: 12px 14px;
+  text-align: left;
   white-space: nowrap;
 }
 
@@ -771,12 +792,11 @@ body {
 .owner-search {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(59,130,246,.25);
   border-radius: 14px;
-  padding: 8px 10px;
-  max-width: 420px;
+  padding: 6px 8px;
 }
 
 .search-icon {
