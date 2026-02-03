@@ -345,6 +345,10 @@ button,
 }
 
 .card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 18px;
   box-shadow:
     0 8px 30px rgba(0,0,0,0.35),
