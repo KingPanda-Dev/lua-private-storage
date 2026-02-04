@@ -344,7 +344,6 @@ body {
 }
 
 .card {
-  display: grid;
   align-items: center;
   gap: 12px;
   padding: 18px;
