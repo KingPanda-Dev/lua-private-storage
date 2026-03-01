@@ -20,6 +20,9 @@ let allFiles = [
 ];
 let filteredFiles = [...allFiles];
 
+let currentPage = 1;
+const perPage = 5;
+
 async function loadConfig() {
   const r = await fetch("/api/config", { cache: "no-store" })
   const cfg = await r.json()
