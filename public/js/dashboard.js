@@ -150,6 +150,22 @@ function formatTime(ms) {
   return `${m}m ${s}s`
 }
 
+let allFiles = [
+  {
+    title: "GrowPai Auto Farm",
+    category: "GrowPai",
+    code: "GP-AX92K",
+    expire: "2026-01-12",
+    used: 3
+  },
+  {
+    title: "GrowLauncher Boost",
+    category: "GrowLauncher",
+    code: "GL-ZX21M",
+    expire: "2025-11-08",
+    used: 10
+  }
+];
 
 function renderTable(data = files) {
   const body = document.getElementById("fileTableBody")
