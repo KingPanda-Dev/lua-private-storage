@@ -220,7 +220,7 @@ function renderTable(data = files) {
   })
 }
 
-document.getElementById("ownerSearch").addEventListener("input", e => {
+document.getElementById("searchInput").addEventListener("input", e => {
   const keyword = e.target.value.toLowerCase();
 
   filteredFiles = allFiles.filter(file =>
