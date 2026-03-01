@@ -2,7 +2,23 @@
 let OWNER_IDS = []
 let ALLOWED_IDS = []
 let files = []
-let allFiles = []
+let allFiles = [
+  {
+    title: "GrowPai Auto Farm",
+    category: "GrowPai",
+    code: "GP-AX92K",
+    expire: "2026-01-12",
+    used: 3
+  },
+  {
+    title: "GrowLauncher Boost",
+    category: "GrowLauncher",
+    code: "GL-ZX21M",
+    expire: "2025-11-08",
+    used: 10
+  }
+];
+let filteredFiles = [...allFiles];
 
 async function loadConfig() {
   const r = await fetch("/api/config", { cache: "no-store" })
@@ -150,22 +166,10 @@ function formatTime(ms) {
   return `${m}m ${s}s`
 }
 
-let allFiles = [
-  {
-    title: "GrowPai Auto Farm",
-    category: "GrowPai",
-    code: "GP-AX92K",
-    expire: "2026-01-12",
-    used: 3
-  },
-  {
-    title: "GrowLauncher Boost",
-    category: "GrowLauncher",
-    code: "GL-ZX21M",
-    expire: "2025-11-08",
-    used: 10
-  }
-];
+function paginate(data) {
+  const start = (currentPage - 1) * perPage;
+  return data.slice(start, start + perPage);
+}
 
 function renderTable(data = files) {
   const body = document.getElementById("fileTableBody")
@@ -215,6 +219,22 @@ function renderTable(data = files) {
     body.appendChild(edit)
   })
 }
+
+document.getElementById("ownerSearch").addEventListener("input", e => {
+  const keyword = e.target.value.toLowerCase();
+
+  filteredFiles = allFiles.filter(file =>
+    file.title.toLowerCase().includes(keyword) ||
+    file.code.toLowerCase().includes(keyword) ||
+    file.category.toLowerCase().includes(keyword)
+  );
+
+  currentPage = 1; // reset page saat search
+  renderTable(paginate(filteredFiles));
+});
+
+// 5. FIRST LOAD
+renderTable(paginate(filteredFiles));
 
 setInterval(() => {
   files.forEach(f => {
