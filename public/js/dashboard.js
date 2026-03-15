@@ -100,7 +100,11 @@ window.showPage = function (page) {
     title.innerText = "Owner Panel"
     desc.innerText = "Manage file codes & access control"
     document.getElementById("btnOwner")?.classList.add("active")
-    renderTable()
+    document.getElementById("searchInput").value = ""
+    filteredFiles = [...allFiles]
+    currentPage = 1
+  
+    renderTable(paginate(filteredFiles))
     return
   }
 
@@ -121,6 +125,22 @@ window.logout = async function () {
   } catch (e) {}
 
   location.replace("/?logout=" + Date.now())
+}
+
+function copyCode(code) {
+  navigator.clipboard.writeText(code)
+  alert("Code copied: " + code)
+}
+
+function deleteFile(code) {
+  allFiles = allFiles.filter(f => f.code !== code)
+  filteredFiles = [...allFiles]
+
+  renderTable(paginate(filteredFiles))
+}
+
+function editFile(code) {
+  alert("Edit file: " + code)
 }
 
 function toggleEdit(id) {
