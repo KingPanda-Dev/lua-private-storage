@@ -118,6 +118,13 @@ window.showPage = function (page) {
   `
 }
 
+async function loadScript(file) {
+  const res = await fetch("/scripts/" + file)
+  const text = await res.text()
+
+  document.getElementById("codeBox").innerText = text
+}
+
 /* ===== Logout ===== */
 window.logout = async function () {
   try {
