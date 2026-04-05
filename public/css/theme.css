@@ -789,6 +789,25 @@ body {
   color: white;
 }
 
+/* Script area */
+.code-box {
+  background: #0d1117;
+  border-radius: 14px;
+  padding: 16px;
+  font-family: monospace;
+  font-size: 13px;
+  overflow: auto;
+  max-height: 300px;
+}
+.action-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 /* Search button */
 .owner-search {
   display: flex;
