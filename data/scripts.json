@@ -4,7 +4,13 @@
     "title": "AutoHit.lua",
     "category": "GrowPai",
     "file": "autohit.lua",
-    "desc": "Auto hit farming faster & optimized",
-    "updated": "2026-01-20"
+    "desc": "Auto hit farming faster & optimized"
+  },
+  {
+    "id": "autofarm",
+    "title": "AutoFarm.lua",
+    "category": "GrowPai",
+    "file": "autofarm.lua",
+    "desc": "Auto farming system with smart logic"
   }
 ]
